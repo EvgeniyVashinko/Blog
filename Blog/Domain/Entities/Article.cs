@@ -1,0 +1,25 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace Blog.Domain.Entities
+{
+    public class Article : EntityBase
+    {
+        [Required(ErrorMessage = "Поле должно быть заполнено")]
+        [Display(Name = "Заглавие")]
+        public string Title { get; set; }
+        [Required(ErrorMessage = "Поле должно быть заполнено")]
+        [Display(Name = "Текст")]
+        public string Text { get; set; }
+        [Required]
+        [Display(Name = "Путь к изображению")]
+        public string ImagePath { get; set; }
+        public List<Comment> Comments { get; set; }
+
+        public Guid UserId { get; set; }
+        public User User { get; set; } 
+    }
+}
