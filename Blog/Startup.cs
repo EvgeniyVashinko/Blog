@@ -2,11 +2,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Blog.Domain;
+using Blog.Domain.Entities;
+using Blog.Domain.Repositories.Abstract;
+using Blog.Domain.Repositories.EntityFramework;
 using Blog.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -26,6 +32,32 @@ namespace Blog
         public void ConfigureServices(IServiceCollection services)
         {
             Configuration.Bind("Project", new Config());
+
+            services.AddTransient<IArticleRepository, EFArticleRepository>();
+            services.AddTransient<ICommentRepository, EFCommentRepository>();
+            services.AddTransient<DataManager>();
+
+            services.AddDbContext<AppDbContext>(x => x.UseSqlServer(Config.ConnectionString));
+
+            services.AddIdentity<User, IdentityRole>(opts =>
+            {
+                opts.User.RequireUniqueEmail = true;
+                opts.Password.RequiredLength = 6;
+                opts.Password.RequireDigit = false;
+                opts.Password.RequireLowercase = false;
+                opts.Password.RequireNonAlphanumeric = false;
+                opts.Password.RequireUppercase = false;
+            }).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.Cookie.Name = "blogAuth";
+                options.Cookie.HttpOnly = true;
+                options.LoginPath = "/account/login";
+                options.AccessDeniedPath = "/account/accesdenied";
+                options.SlidingExpiration = true;
+            });
+
             services.AddControllersWithViews().SetCompatibilityVersion(CompatibilityVersion.Version_3_0).AddSessionStateTempDataProvider();
         }
 
@@ -36,11 +68,15 @@ namespace Blog
             {
                 app.UseDeveloperExceptionPage();
             }
+            // Подключаем поддержку static files
+
+            app.UseStaticFiles();
 
             app.UseRouting();
 
-            // Подключаем поддержку static files
-            app.UseStaticFiles();
+            app.UseCookiePolicy();
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

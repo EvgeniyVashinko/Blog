@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Blog.Domain.Entities
 {
-    public class User : IdentityUser<Guid>
+    public class User : IdentityUser
     {
         public string ImagePath { get; set; }
         List<Article> Articles { get; set; }

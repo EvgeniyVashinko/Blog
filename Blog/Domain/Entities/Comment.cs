@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Blog.Domain.Entities
 {
-    public class Comment
+    public class Comment : EntityBase
     {
         [Required(ErrorMessage = "Поле должно быть заполнено")]
         [Display(Name = "Текст")]
@@ -18,7 +18,7 @@ namespace Blog.Domain.Entities
         public Guid ArticleID { get; set; }
         public Article Article { get; set; }
 
-        public Guid UserID { get; set; }
+        //public Guid UserID { get; set; }
         public User User { get; set; }
     }
 }
