@@ -56,5 +56,28 @@ namespace Blog.Controllers
             await signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
+
+        [AllowAnonymous]
+        public IActionResult Register(string returnUrl)
+        {
+            ViewBag.returnUrl = returnUrl;
+            return View(new RegisterViewModel());
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl)
+        {
+            if (ModelState.IsValid)//EmailConfirmed!!!!!!
+            {
+                User user = new User { UserName = model.UserName, Email = model.Email,  EmailConfirmed=true};
+                var result = await userManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+                    return Redirect("/account/login/");
+                }
+            }
+            return View(model);
+        }
     }
 }
