@@ -25,17 +25,17 @@
                 @if (SignInManager.IsSignedIn(User))
                 {
                     <li><a href="#">Профиль</a></li>
+
+                    <li>
+                        <span class="opener">Мой блог</span>
+                        <ul>
+                            <li><a href="#">Мои статьи</a></li>
+                            <li><a href="#">Добавить</a></li>
+                        </ul>
+                    </li>
                 }
                 <li><a href="#">Новое</a></li>
-                @*<li>
-            <span class="opener">Submenu</span>
-            <ul>
-                <li><a href="#">Lorem Dolor</a></li>
-                <li><a href="#">Ipsum Adipiscing</a></li>
-                <li><a href="#">Tempus Magna</a></li>
-                <li><a href="#">Feugiat Veroeros</a></li>
-            </ul>
-        </li>*@
+
                 <li><a href="#">Популярное</a></li>
                 <li><a href="#">Новости</a></li>
                 @if (SignInManager.IsSignedIn(User))
