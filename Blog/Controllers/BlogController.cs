@@ -57,9 +57,10 @@ namespace Blog.Controllers
             return RedirectToAction(nameof(HomeController.Index), nameof(HomeController).Replace("Controller", ""));
         }
 
-        public IActionResult UserArticles(Guid userId)
+        public async Task<IActionResult> UserArticles()
         {
-            return View();
+            var user = await userManager.GetUserAsync(HttpContext.User);
+            return View(dataManager.Articles.GetArticlesByUser(user));
         }
     }
 }

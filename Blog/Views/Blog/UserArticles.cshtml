@@ -1,0 +1,26 @@
+﻿@model IQueryable<Article>
+
+@{
+    ViewData["Title"] = "Мои статьи";
+}
+
+<!-- Section -->
+<section>
+    <div class="posts">
+        @if (Model.Any())
+        {
+            @foreach (Article article in Model)
+            {
+                <article>
+                    <a href="#" class="image"><img src="~/images/@article.ImagePath" alt="" /></a>
+                    <h3>@article.Title</h3>
+                    @Html.Raw(article.Text)
+                    <ul class="actions">
+                        <li><a href="#" class="button">More</a></li>
+                    </ul>
+                </article>
+            }
+        }
+    </div>
+</section>
+
