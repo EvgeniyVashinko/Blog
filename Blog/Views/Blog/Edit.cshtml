@@ -1,0 +1,52 @@
+﻿@model Article
+
+@{
+    ViewData["Title"] = "Статья";
+}
+
+<script src="~/js/ckeditor/ckeditor.js"></script>
+
+<h2>Название</h2>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <input type="hidden" asp-for="PublishDate"/>
+            <input type="hidden" asp-for="Id"  />
+            <input type="hidden" asp-for="ImagePath" />
+
+            <div asp-validation-summary="All"></div>
+            <div class="form-group">
+                <label asp-for="Title"></label>
+                <input asp-for="Title"/>
+                <span asp-validation-for="Title"></span>
+            </div>
+            <div>
+                <label asp-for="Text"></label>
+                <textarea asp-for="Text"></textarea>
+                <span asp-validation-for="Text"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImagePath"></label>
+                <input type="file" name="imgFile" id="imgFile"/>
+                <div>
+                    <img src="~/images/@Model.ImagePath" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Сохранить" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    window.onload = function () {
+        var newCKEdit = CKEDITOR.replace('@Html.IdFor(x=>x.Text)');
+        newCKEdit.updateElement();
+    }
+</script>
+

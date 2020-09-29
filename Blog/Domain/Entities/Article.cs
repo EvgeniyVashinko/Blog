@@ -14,7 +14,7 @@ namespace Blog.Domain.Entities
         [Required(ErrorMessage = "Поле должно быть заполнено")]
         [Display(Name = "Текст")]
         public string Text { get; set; }
-        [Required]
+        //[Required]
         [Display(Name = "Путь к изображению")]
         public string ImagePath { get; set; }
         public List<Comment> Comments { get; set; }
