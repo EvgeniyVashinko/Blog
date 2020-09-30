@@ -12,11 +12,11 @@
             @foreach (Article article in Model)
             {
                 <article>
-                    <a href="#" class="image"><img src="~/images/@article.ImagePath" alt="" height="310"/></a>
+                    <a asp-area="" asp-controller="Blog" asp-action="Show" asp-route-id="@article.Id" class="image"><img src="~/images/@article.ImagePath" alt="" height="310"/></a>
                     <h3>@article.Title</h3>
                     @Html.Raw(article.Text)
                     <ul class="actions">
-                        <li><a href="#" class="button">Подробнее</a></li>
+                        <li><a asp-area="" asp-controller="Blog" asp-action="Show" asp-route-id="@article.Id" class="button">Подробнее</a></li>
                     </ul>
                 </article>
             }

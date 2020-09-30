@@ -1,0 +1,27 @@
+﻿@model IQueryable<Article>
+
+@{
+    ViewData["Title"] = "Новое";
+}
+
+<!-- Section -->
+<section>
+    <div class="posts">
+        @if (Model.Any())
+        {
+            @foreach (Article article in Model)
+            {
+                <article>
+                    <a asp-area="" asp-controller="Blog" asp-action="Show" asp-route-id="@article.Id" class="image"><img src="~/images/@article.ImagePath" alt="" height="310" /></a>
+                    <h3>@article.Title</h3>
+                    @Html.Raw(article.Text)
+                <ul class="actions">
+                    <li><a asp-area="" asp-controller="Blog" asp-action="Show" asp-route-id="@article.Id" class="button">Подробнее</a></li>
+                    <li><a asp-area="" asp-controller="Blog" asp-action="Edit" asp-route-id="@article.Id" class="button">Редактировать</a></li>
+                    <li><a asp-area="" asp-controller="Blog" asp-action="Delete" asp-route-id="@article.Id" class="button">Удалить</a></li>
+                </ul>
+                </article>
+            }
+        }
+    </div>
+</section>

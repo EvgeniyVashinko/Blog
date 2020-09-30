@@ -1,0 +1,17 @@
+﻿@model Article
+
+@{
+    ViewData["Title"] = "Статья";
+}
+
+<section>
+    <header class="main">
+        <h1>@Model.Title</h1>
+    </header>
+
+    <span class="image main"><img src="~/images/@Model.ImagePath" alt="" /></span>
+
+    @Html.Raw(Model.Text)
+
+</section>
+

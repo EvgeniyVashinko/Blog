@@ -50,7 +50,7 @@ namespace Blog.Controllers
             return View(model);
         }
 
-        [HttpPost]
+        //[HttpPost]
         public IActionResult Delete(Guid id)
         {
             dataManager.Articles.DeleteArticle(id);
@@ -58,6 +58,12 @@ namespace Blog.Controllers
         }
 
         public async Task<IActionResult> UserArticles()
+        {
+            var user = await userManager.GetUserAsync(HttpContext.User);
+            return View(dataManager.Articles.GetArticlesByUser(user));
+        }
+
+        public async Task<IActionResult> EditArticles()
         {
             var user = await userManager.GetUserAsync(HttpContext.User);
             return View(dataManager.Articles.GetArticlesByUser(user));
@@ -80,5 +86,10 @@ namespace Blog.Controllers
         //                   select article;
         //    return View(dataManager.Articles.GetArticles());
         //}
+        public IActionResult Show(Guid id)
+        {
+            var article = dataManager.Articles.GetArticle(id);
+            return View(article);
+        }
     }
 }
