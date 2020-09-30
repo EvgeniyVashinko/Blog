@@ -1,7 +1,7 @@
 ﻿@model IQueryable<Article>
 
 @{
-    ViewData["Title"] = "Мои статьи";
+    ViewData["Title"] = "Новое";
 }
 
 <!-- Section -->
@@ -12,7 +12,7 @@
             @foreach (Article article in Model)
             {
                 <article>
-                    <a href="#" class="image"><img src="~/images/@article.ImagePath" alt="" height="310"/></a>
+                    <a href="#" class="image"><img src="~/images/@article.ImagePath" alt="" height="310" /></a>
                     <h3>@article.Title</h3>
                     @Html.Raw(article.Text)
                     <ul class="actions">
@@ -23,4 +23,3 @@
         }
     </div>
 </section>
-

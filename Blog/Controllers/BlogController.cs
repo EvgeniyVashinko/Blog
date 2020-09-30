@@ -62,5 +62,23 @@ namespace Blog.Controllers
             var user = await userManager.GetUserAsync(HttpContext.User);
             return View(dataManager.Articles.GetArticlesByUser(user));
         }
+
+        public IActionResult FreshArticles()
+        {
+            var articles = from article in dataManager.Articles.GetArticles()
+                           where article.PublishDate >= DateTime.Now.AddDays(-7)
+                           orderby article.PublishDate descending
+                           select article;
+            return View(articles);
+        }
+
+        //Добавить лайки к записям и выбирать по наиболее популярным
+        //public IActionResult PopularArticles() 
+        //{
+        //    var articles = from article in dataManager.Articles.GetArticles()
+        //                   orderby article.Li
+        //                   select article;
+        //    return View(dataManager.Articles.GetArticles());
+        //}
     }
 }

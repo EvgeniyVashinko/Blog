@@ -31,10 +31,11 @@
                         <ul>
                             <li><a asp-area="" asp-controller="Blog" asp-action="UserArticles">Мои статьи</a></li>
                             <li><a asp-area="" asp-controller="Blog" asp-action="Edit">Добавить</a></li>
+                            <li><a asp-area="" asp-controller="Blog" asp-action="UserArticles">Редактировать</a></li>
                         </ul>
                     </li>
                 }
-                <li><a href="#">Новое</a></li>
+                <li><a asp-area="" asp-controller="Blog" asp-action="FreshArticles">Новое</a></li>
 
                 <li><a href="#">Популярное</a></li>
                 <li><a href="#">Новости</a></li>

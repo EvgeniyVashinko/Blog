@@ -6,7 +6,14 @@
 
 <script src="~/js/ckeditor/ckeditor.js"></script>
 <section>
-    <h2>@ViewBag.Head</h2>
+    @if (Model.Id == default)
+    {
+        <h2>Создать</h2>
+    }
+    else
+    {
+        <h2>Редактировать</h2>
+    }
 
     <div class="row">
         <div class="col-md-4">
