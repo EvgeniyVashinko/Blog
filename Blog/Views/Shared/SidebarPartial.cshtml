@@ -8,7 +8,9 @@
             <form method="post" action="#">
                 <input type="text" name="query" id="query" placeholder="Поиск" />
             </form>
+            <vc:date></vc:date>
         </section>
+
 
         <!-- Menu -->
         <nav id="menu">
@@ -38,7 +40,10 @@
                 <li><a asp-area="" asp-controller="Blog" asp-action="FreshArticles">Новое</a></li>
 
                 <li><a href="#">Популярное</a></li>
-                <li><a href="#">Новости</a></li>
+                <li>
+                    <span class="opener">Статистика</span>
+                    <vc:info></vc:info>
+                </li>
                 @if (SignInManager.IsSignedIn(User))
                 {
                     <li><a asp-area="" asp-controller="Account" asp-action="Logout">Выход</a></li>
