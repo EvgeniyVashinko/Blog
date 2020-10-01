@@ -10,7 +10,8 @@ namespace Blog.Domain.Repositories.Abstract
     {
         IQueryable<Comment> GetComments();
         Comment GetComment(Guid id);
-        IQueryable<Comment> GetArticlesByAuthor(User user);
+        IQueryable<Comment> GetCommentsByAuthor(User user);
+        IQueryable<Comment> GetCommentsByArticle(Article article);
         void SaveComment(Comment comment);
         void DeleteComment(Guid id);
     }

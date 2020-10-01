@@ -89,7 +89,26 @@ namespace Blog.Controllers
         public IActionResult Show(Guid id)
         {
             var article = dataManager.Articles.GetArticle(id);
+
+            var comments = dataManager.Comments.GetCommentsByArticle(dataManager.Articles.GetArticle(id));
+            ViewBag.Comments = comments;
             return View(article);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateComment(string tarea, Guid id)
+        {
+            Comment comment = new Comment();
+            var user = await userManager.GetUserAsync(HttpContext.User);
+            comment.Article = dataManager.Articles.GetArticle(id);
+            comment.User = user;
+            comment.Text = tarea;
+            dataManager.Comments.SaveComment(comment);
+
+            var comments = dataManager.Comments.GetCommentsByArticle(comment.Article);
+
+            ViewBag.Comments = comments;
+            return View("Show", dataManager.Articles.GetArticle(id));
         }
     }
 }

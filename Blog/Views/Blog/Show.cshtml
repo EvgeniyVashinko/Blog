@@ -9,9 +9,43 @@
         <h1>@Model.Title</h1>
     </header>
 
-    <span class="image main"><img src="~/images/@Model.ImagePath" alt="" /></span>
+    <span class="image left"><img src="~/images/@Model.ImagePath" alt="" /></span>
 
     @Html.Raw(Model.Text)
 
+
+    <form asp-controller="Blog" asp-action="CreateComment">
+        <input type="hidden" asp-for="Id" />
+        <div>
+            <textarea placeholder="Введите текст комментария" rows="6" name="tarea"></textarea>
+        </div>
+        <br />
+        <div>
+            <input type="submit" value="Отправить" class="primary"/>
+        </div>
+    </form>
+
+    <br />
+    @if (ViewBag.Comments != null)
+    {
+        @foreach (Comment comment in ViewBag.Comments)
+        {
+            <div class="box">
+                <a href=""><h4>UserName</h4></a>
+                <p>@comment.Text</p>
+                <ul class="icons">
+                    <li>
+                        <a href="#" class="icon fa fa-thumbs-down" aria-hidden="true"></a>
+                    </li>
+                    <li>
+                        <strong> @comment.Like_amount </strong>
+                    </li>
+                    <li>
+                        <a href="#" class="icon fa fa-thumbs-up" aria-hidden="true"></a>
+                    </li>
+                </ul>
+            </div>
+        }
+    }
 </section>
 

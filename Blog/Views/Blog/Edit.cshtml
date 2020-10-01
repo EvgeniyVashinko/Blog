@@ -37,10 +37,14 @@
                     <label asp-for="ImagePath"></label>
                     <input type="file" name="imgFile" id="imgFile" />
                     <div>
-                        <span class="image main"><img src="~/images/@Model.ImagePath" /></span>
+                        <span class="image left"><img src="~/images/@Model.ImagePath" /></span>
                     </div>
                 </div>
-
+                <br /><br />
+                @if (Model.ImagePath != null) @*Не будем о грустном))*@
+                {
+                    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+                }
                 <div class="form-group">
                     <input type="submit" value="Сохранить" class="btn btn-primary" />
                 </div>
