@@ -8,7 +8,7 @@
             <form method="post" action="#">
                 <input type="text" name="query" id="query" placeholder="Поиск" />
             </form>
-            <vc:date></vc:date>
+            <date></date>
         </section>
 
 
@@ -26,7 +26,12 @@
                 <li><a href="/">Главная</a></li>
                 @if (SignInManager.IsSignedIn(User))
                 {
-                    <li><a href="#">Профиль</a></li>
+                    <li>
+                        <span class="opener">Профиль</span>
+                        <ul>
+                            <vc:user-info></vc:user-info>
+                        </ul>
+                    </li>
 
                     <li>
                         <span class="opener">Мой блог</span>

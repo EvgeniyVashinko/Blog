@@ -31,14 +31,14 @@ namespace Blog.Models.ViewComponents
     }
     public class Information
     {
-        public int articlesCount { get; set; }
-        public int commentsCount { get; set; }
-        public int usersCount { get; set; }
+        public int ArticlesCount { get; set; }
+        public int CommentsCount { get; set; }
+        public int UsersCount { get; set; }
         public Information(int articlesCount, int commentsCount, int usersCount)
         {
-            this.articlesCount = articlesCount;
-            this.commentsCount = commentsCount;
-            this.usersCount = usersCount;
+            this.ArticlesCount = articlesCount;
+            this.CommentsCount = commentsCount;
+            this.UsersCount = usersCount;
         }
 
     }
