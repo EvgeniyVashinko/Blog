@@ -45,7 +45,7 @@ namespace Blog.Controllers
                     }
                 }
                 dataManager.Articles.SaveArticle(model);
-                return RedirectToAction(nameof(HomeController.Index), nameof(HomeController).Replace("Controller", ""));
+                return RedirectToAction(nameof(BlogController.EditArticles), nameof(BlogController).Replace("Controller", ""));
             }
             return View(model);
         }

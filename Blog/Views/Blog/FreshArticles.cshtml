@@ -11,8 +11,17 @@
         {
             @foreach (Article article in Model)
             {
+                var path = "";
+                @if (article.ImagePath != null)
+                {
+                    path = article.ImagePath;
+                }
+                else
+                {
+                    path = "no_image.jpg";
+                }
                 <article>
-                    <a asp-area="" asp-controller="Blog" asp-action="Show" asp-route-id="@article.Id" class="image"><img src="~/images/@article.ImagePath" alt="" height="310"/></a>
+                    <a asp-area="" asp-controller="Blog" asp-action="Show" asp-route-id="@article.Id" class="image"><img src="~/images/@path" alt="" height="310" /></a>
                     <h2>@article.Title</h2>
                     @*@Html.Raw(article.Text)*@
                     <ul class="actions">

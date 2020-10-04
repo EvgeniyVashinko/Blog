@@ -8,8 +8,11 @@
     <header class="main">
         <h1>@Model.Title</h1>
     </header>
+    @if (Model.ImagePath != null)
+    {
+        <span class="image left"><img src="~/images/@Model.ImagePath" alt="" /></span>
+    }
 
-    <span class="image left"><img src="~/images/@Model.ImagePath" alt="" /></span>
 
     @Html.Raw(Model.Text)
 
@@ -21,7 +24,7 @@
         </div>
         <br />
         <div>
-            <input type="submit" value="Отправить" class="primary"/>
+            <input type="submit" value="Отправить" class="primary" />
         </div>
     </form>
 
