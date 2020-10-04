@@ -23,6 +23,14 @@
                 <article>
                     <a asp-area="" asp-controller="Blog" asp-action="Show" asp-route-id="@article.Id" class="image"><img src="~/images/@path" alt="" height="310" /></a>
                     <h2>@article.Title</h2>
+                    <ul class="icons">
+                        <li>
+                            <strong> Like amount... </strong>
+                        </li>
+                        <li>
+                            <a href="#" class="icon fa fa-thumbs-up" aria-hidden="true"></a>
+                        </li>
+                    </ul>
                     @*@Html.Raw(article.Text)*@
                     <ul class="actions">
                         <li><a asp-area="" asp-controller="Blog" asp-action="Show" asp-route-id="@article.Id" class="button">Подробнее</a></li>

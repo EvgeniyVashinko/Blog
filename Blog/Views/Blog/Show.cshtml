@@ -16,6 +16,14 @@
 
     @Html.Raw(Model.Text)
 
+    <ul class="icons">
+        <li>
+            <strong> Like amount... </strong>
+        </li>
+        <li>
+            <a href="#" class="icon fa fa-thumbs-up" aria-hidden="true"></a>
+        </li>
+    </ul>
 
     <form asp-controller="Blog" asp-action="CreateComment">
         <input type="hidden" asp-for="Id" />
@@ -37,9 +45,6 @@
                 <a href=""><h4>UserName</h4></a>
                 <p>@comment.Text</p>
                 <ul class="icons">
-                    <li>
-                        <a href="#" class="icon fa fa-thumbs-down" aria-hidden="true"></a>
-                    </li>
                     <li>
                         <strong> Like amount... </strong>
                     </li>
