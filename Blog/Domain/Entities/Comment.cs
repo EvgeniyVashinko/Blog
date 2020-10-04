@@ -12,8 +12,8 @@ namespace Blog.Domain.Entities
         [Required(ErrorMessage = "Поле должно быть заполнено")]
         [Display(Name = "Текст")]
         public string Text { get; set; }
-        [HiddenInput(DisplayValue = false)]
-        public int Like_amount { get; set; }
+        //[HiddenInput(DisplayValue = false)]
+        //public int Like_amount { get; set; }//удалить
 
         public Guid ArticleID { get; set; }
         public Article Article { get; set; }

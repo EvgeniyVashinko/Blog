@@ -15,11 +15,44 @@ namespace Blog.Domain
 
         public DbSet<Article> Articles { get; set; }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<Tag> Tags { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+            builder.Entity<ArticleTag>()
+                .HasKey(t => new { t.ArticleId, t.TagId });
+            builder.Entity<ArticleTag>()
+                .HasOne(at => at.Article)
+                .WithMany(a => a.ArticleTags)
+                .HasForeignKey(at => at.ArticleId);
+            builder.Entity<ArticleTag>()
+                .HasOne(at => at.Tag)
+                .WithMany(a => a.ArticleTags)
+                .HasForeignKey(at => at.TagId);
 
+            builder.Entity<ArticleLike>()
+                .HasKey(l => new { l.ArticleId, l.UserId });
+            builder.Entity<ArticleLike>()
+                .HasOne(al => al.Article)
+                .WithMany(a => a.ArticleLikes)
+                .HasForeignKey(al => al.ArticleId);
+            builder.Entity<ArticleLike>()
+                .HasOne(al => al.User)
+                .WithMany(u => u.ArticleLikes)
+                .HasForeignKey(al => al.UserId);
+
+            builder.Entity<Report>()
+                .HasKey(r => new { r.ArticleId, r.UserId });
+            builder.Entity<Report>()
+                .HasOne(r => r.Article)
+                .WithMany(a => a.Reports)
+                .HasForeignKey(r => r.ArticleId);
+            builder.Entity<Report>()
+                .HasOne(r => r.User)
+                .WithMany(u => u.Reports)
+                .HasForeignKey(r => r.UserId);
+               
             builder.Entity<IdentityRole>().HasData(new IdentityRole
             {
                 Id = "ED70FD60-DE76-4497-9FBB-822F7759DBAE",
