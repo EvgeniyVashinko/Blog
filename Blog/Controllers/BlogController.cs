@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Blog.Controllers
 {
@@ -75,23 +76,28 @@ namespace Blog.Controllers
                            where article.PublishDate >= DateTime.Now.AddDays(-7)
                            orderby article.PublishDate descending
                            select article;
+            ViewBag.cntrl = "Blog";
+            ViewBag.actn = "FreshArticles";
             return View(articles);
         }
 
         //Добавить лайки к записям и выбирать по наиболее популярным
-        //public IActionResult PopularArticles() 
-        //{
-        //    var articles = from article in dataManager.Articles.GetArticles()
-        //                   orderby article.Li
-        //                   select article;
-        //    return View(dataManager.Articles.GetArticles());
-        //}
+        public IActionResult PopularArticles()
+        {
+            var articles = from article in dataManager.Articles.GetArticles()
+                           orderby article.ArticleLikes.Count() descending
+                           select article;
+            ViewBag.cntrl = "Blog";
+            ViewBag.actn = "PopularArticles";
+            return View("FreshArticles", articles);
+        }
         public IActionResult Show(Guid id)
         {
             var article = dataManager.Articles.GetArticle(id);
 
             var comments = dataManager.Comments.GetCommentsByArticle(dataManager.Articles.GetArticle(id));
             ViewBag.Comments = comments;
+            ViewBag.LikeAmount = dataManager.Articles.LikeAmount(article);
             return View(article);
         }
 
@@ -108,7 +114,31 @@ namespace Blog.Controllers
             var comments = dataManager.Comments.GetCommentsByArticle(comment.Article);
 
             ViewBag.Comments = comments;
+            ViewBag.LikeAmount = dataManager.Articles.LikeAmount(comment.Article);
             return View("Show", dataManager.Articles.GetArticle(id));
+        }
+        public async Task<IActionResult> ArticleLike(Guid id, string cntrl = null, string actn = null)
+        {
+            var user = await userManager.GetUserAsync(HttpContext.User);
+            var article = dataManager.Articles.GetArticle(id);
+            if (!dataManager.Articles.IsLike(user,article))
+            {
+                dataManager.Articles.AddLike(user, article);
+            }
+            else
+            {
+                dataManager.Articles.DeleteLike(user, article);
+            }
+
+            var comments = dataManager.Comments.GetCommentsByArticle(article);
+
+            ViewBag.Comments = comments;
+            ViewBag.LikeAmount = dataManager.Articles.LikeAmount(article);
+            if (actn == null)
+            {
+                return View("Show", article);
+            }
+            return RedirectToAction(actn,cntrl);
         }
     }
 }

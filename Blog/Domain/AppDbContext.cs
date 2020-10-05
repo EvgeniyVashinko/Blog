@@ -16,6 +16,10 @@ namespace Blog.Domain
         public DbSet<Article> Articles { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Tag> Tags { get; set; }
+        public DbSet<ArticleLike> ArticleLikes { get; set; }
+        public DbSet<Profile> Profiles { get; set; }
+        public DbSet<Report> Reports { get; set; }
+        public DbSet<ArticleTag> ArticleTags { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

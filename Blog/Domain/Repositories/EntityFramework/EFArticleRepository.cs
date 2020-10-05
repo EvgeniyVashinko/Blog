@@ -19,15 +19,18 @@ namespace Blog.Domain.Repositories.EntityFramework
 
         public Article GetArticle(Guid id)
         {
+            context.Articles.Include(a => a.ArticleLikes).ToList();
             return context.Articles.FirstOrDefault(x => x.Id == id);
         }
         public IQueryable<Article> GetArticlesByUser(User user)
         {
+            context.Articles.Include(a => a.ArticleLikes).ToList();
             return context.Articles.Where(x => x.User.Equals(user));
         }
 
         public IQueryable<Article> GetArticles()
         {
+            context.Articles.Include(a => a.ArticleLikes).ToList();
             return context.Articles;
         }
 
@@ -50,6 +53,25 @@ namespace Blog.Domain.Repositories.EntityFramework
             context.SaveChanges();
         }
 
-
+        public void AddLike(User user, Article article)
+        {
+            context.Articles.Include(a => a.ArticleLikes).ToList();
+            article.ArticleLikes.Add(new ArticleLike { UserId = user.Id, ArticleId = article.Id });
+            context.SaveChanges();
+        }
+        public void DeleteLike(User user, Article article)
+        {
+            //context.ArticleLikes.Remove(new ArticleLike { User = user, Article = article });
+            article.ArticleLikes.Remove(article.ArticleLikes.First(al => al.ArticleId == article.Id && al.UserId == user.Id));
+            context.SaveChanges();
+        }
+        public bool IsLike(User user, Article article)
+        {
+            return context.ArticleLikes.Where(al => al.ArticleId == article.Id && al.UserId == user.Id).Count() != 0;
+        }
+        public int LikeAmount(Article article)
+        {
+            return context.ArticleLikes.Where(al => al.ArticleId == article.Id).Count();
+        }
     }
 }

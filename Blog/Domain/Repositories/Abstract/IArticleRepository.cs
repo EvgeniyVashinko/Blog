@@ -14,6 +14,11 @@ namespace Blog.Domain.Repositories.Abstract
         //IQueryable<Article> GetArticlesByTitle();
         void SaveArticle(Article article);
         void DeleteArticle(Guid id);
-        
+        void AddLike(User user, Article article);
+        void DeleteLike(User user, Article article);
+        bool IsLike(User user, Article article);
+        int LikeAmount(Article article);
+
+
     }
 }

@@ -25,10 +25,10 @@
                     <h2>@article.Title</h2>
                     <ul class="icons">
                         <li>
-                            <strong> Like amount... </strong>
+                            <strong> @article.ArticleLikes.Count()  </strong>
                         </li>
                         <li>
-                            <a href="#" class="icon fa fa-thumbs-up" aria-hidden="true"></a>
+                            <a asp-controller="Blog" asp-action="ArticleLike" asp-route-id="@article.Id" asp-route-cntrl="Home" asp-route-actn="Index" class="icon fa fa-thumbs-up" aria-hidden="true"></a>
                         </li>
                     </ul>
                     @*@Html.Raw(article.Text)*@

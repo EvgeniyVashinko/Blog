@@ -18,10 +18,10 @@
 
     <ul class="icons">
         <li>
-            <strong> Like amount... </strong>
+            <strong>@Model.ArticleLikes.Count()</strong>
         </li>
         <li>
-            <a href="#" class="icon fa fa-thumbs-up" aria-hidden="true"></a>
+            <a asp-controller="Blog" asp-action="ArticleLike" asp-route-id="@Model.Id" class="icon fa fa-thumbs-up" aria-hidden="true"></a>
         </li>
     </ul>
 
