@@ -29,6 +29,10 @@
                     <span asp-validation-for="Title"></span>
                 </div>
                 <div>
+                    <label>Категория:</label>
+                    <vc:categories-list select="true"></vc:categories-list>
+                </div>
+                <div>
                     <label asp-for="Text"></label>
                     <textarea asp-for="Text"></textarea>
                     <span asp-validation-for="Text"></span>

@@ -15,5 +15,6 @@ namespace Blog.Domain.Repositories.Abstract
         void SaveCategory(Category category);
         IQueryable<Article> GetArticlesByCategory(Category category);
         IQueryable<Article> GetArticlesByCategory(Guid categoryId);
+        IEnumerable<string> GetCategoriesStringList();
     }
 }

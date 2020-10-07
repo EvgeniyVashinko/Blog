@@ -41,6 +41,15 @@ namespace Blog.Domain.Repositories.EntityFramework
         {
             return context.Categories;
         }
+        public IEnumerable<string> GetCategoriesStringList()
+        {
+            List<string> list = new List<string>();
+            foreach(var cat in GetCategories())
+            {
+                list.Add(cat.Name);
+            }
+            return list;
+        }
 
         public Category GetCategory(Guid id)
         {

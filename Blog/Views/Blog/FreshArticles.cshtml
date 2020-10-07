@@ -28,7 +28,7 @@
                             <strong> @article.ArticleLikes.Count() </strong>
                         </li>
                         <li>
-                            <a asp-controller="Blog" asp-action="ArticleLike" asp-route-id="@article.Id" asp-route-cntrl="@ViewBag.cntrl" asp-route-actn="@ViewBag.actn" class="icon fa fa-thumbs-up" aria-hidden="true"></a>
+                            <a asp-controller="Blog" asp-action="ArticleLike" asp-route-id="@article.Id" asp-route-cntrl="@ViewBag.cntrl" asp-route-actn="@ViewBag.actn" asp-route-name="@ViewBag.name" class="icon fa fa-thumbs-up" aria-hidden="true"></a>
                         </li>
                     </ul>
                     @*@Html.Raw(article.Text)*@

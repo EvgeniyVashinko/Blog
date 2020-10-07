@@ -31,12 +31,13 @@ namespace Blog.Controllers
             return View(article);
         }
         [HttpPost]
-        public async Task<IActionResult> Edit(Article model, IFormFile imgFile)
+        public async Task<IActionResult> Edit(Article model, IFormFile imgFile, string category)
         {
             if (ModelState.IsValid)
             {
+                Category cat = dataManager.Categories.GetCategory(category);
                 model.User = await userManager.GetUserAsync(HttpContext.User);
-
+                model.Category = cat;
                 if (imgFile != null)
                 {
                     model.ImagePath = imgFile.FileName;
@@ -117,7 +118,7 @@ namespace Blog.Controllers
             ViewBag.LikeAmount = dataManager.Articles.LikeAmount(comment.Article);
             return View("Show", dataManager.Articles.GetArticle(id));
         }
-        public async Task<IActionResult> ArticleLike(Guid id, string cntrl = null, string actn = null)
+        public async Task<IActionResult> ArticleLike(Guid id, string cntrl = null, string actn = null, string name = null)
         {
             var user = await userManager.GetUserAsync(HttpContext.User);
             var article = dataManager.Articles.GetArticle(id);
@@ -138,7 +139,16 @@ namespace Blog.Controllers
             {
                 return View("Show", article);
             }
-            return RedirectToAction(actn,cntrl);
+            return RedirectToAction(actn,cntrl,new { name = name});
+        }
+        public IActionResult Category(string name)
+        {
+            var cat = dataManager.Categories.GetCategory(name);
+            var articles = dataManager.Categories.GetArticlesByCategory(cat);
+            ViewBag.cntrl = "Blog";
+            ViewBag.actn = "Category";
+            ViewBag.name = name;
+            return View("FreshArticles", articles);
         }
     }
 }

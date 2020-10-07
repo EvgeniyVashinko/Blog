@@ -1,0 +1,8 @@
+﻿@model IEnumerable<string>
+
+<select name="category">
+    @foreach (var str in Model)
+    {
+        <option value="@str">@str</option>
+    }
+</select>

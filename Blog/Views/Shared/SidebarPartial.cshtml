@@ -24,6 +24,10 @@
                     <li><a asp-area="" asp-controller="Account" asp-action="Register">Регистрация</a></li>
                 }
                 <li><a href="/">Главная</a></li>
+                <li>
+                    <span class="opener">Категории</span>
+                    <vc:categories-list select="false"></vc:categories-list>
+                </li>
                 @if (SignInManager.IsSignedIn(User))
                 {
                     <li>
