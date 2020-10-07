@@ -19,10 +19,10 @@ namespace Blog.Domain.Entities
         public string ImagePath { get; set; }
         public List<Comment> Comments { get; set; }
 
-        //public Guid UserId { get; set; }
         public User User { get; set; }
-        public List<ArticleTag> ArticleTags { get; set; }
         public List<ArticleLike> ArticleLikes { get; set; }
         public List<Report> Reports { get; set; }
+        public Guid CategotyId { get; set; }
+        public Category Category { get; set; }
     }
 }

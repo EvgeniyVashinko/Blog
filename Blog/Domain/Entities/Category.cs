@@ -5,11 +5,9 @@ using System.Threading.Tasks;
 
 namespace Blog.Domain.Entities
 {
-    public class Tag
+    public class Category
     {
         public Guid Id { get; set; }
-        public string TagName { get; set; }
-        public List<ArticleTag> ArticleTags { get; set; }
+        public List<Article> Articles { get; set; }
     }
-
 }

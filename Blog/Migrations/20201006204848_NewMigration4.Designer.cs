@@ -4,14 +4,16 @@ using Blog.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Blog.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201006204848_NewMigration4")]
+    partial class NewMigration4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,9 +28,6 @@ namespace Blog.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("CategoryId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("CategotyId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("ImagePath")
@@ -86,7 +85,7 @@ namespace Blog.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Category");
                 });
 
             modelBuilder.Entity("Blog.Domain.Entities.Comment", b =>
@@ -196,7 +195,7 @@ namespace Blog.Migrations
                         new
                         {
                             Id = "ED70FD60-DE76-4497-9FBB-822F7759DBAE",
-                            ConcurrencyStamp = "fd2c50e3-f5f6-4133-8bf1-b5f82a0954dc",
+                            ConcurrencyStamp = "18dbfb97-21cb-43fe-a8e7-e68fa197331a",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         });
@@ -395,13 +394,13 @@ namespace Blog.Migrations
                         {
                             Id = "DD20FD22-4350-4D1C-98C4-E82F21C1F414",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e13db17b-0891-4d1c-b57e-a2b59bedd3d4",
+                            ConcurrencyStamp = "bb97f68c-6575-4392-ac47-9d4117ba51c6",
                             Email = "email@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "EMAIL@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEBJ27b2Zqf/YTL5M3cOwFAb45L4eRK6wEAGWCin2THLbElTXADkH8ZA+hILfBjVGYQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEO6FkN8zmqrvlLpFeRTTfGE0TjIiYaIRme6NOMkLc2OPbErtZpfaYqmR1XVBCvR0pA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,

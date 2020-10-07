@@ -15,25 +15,14 @@ namespace Blog.Domain
 
         public DbSet<Article> Articles { get; set; }
         public DbSet<Comment> Comments { get; set; }
-        public DbSet<Tag> Tags { get; set; }
         public DbSet<ArticleLike> ArticleLikes { get; set; }
         public DbSet<Profile> Profiles { get; set; }
         public DbSet<Report> Reports { get; set; }
-        public DbSet<ArticleTag> ArticleTags { get; set; }
+        public DbSet<Category> Categories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            builder.Entity<ArticleTag>()
-                .HasKey(t => new { t.ArticleId, t.TagId });
-            builder.Entity<ArticleTag>()
-                .HasOne(at => at.Article)
-                .WithMany(a => a.ArticleTags)
-                .HasForeignKey(at => at.ArticleId);
-            builder.Entity<ArticleTag>()
-                .HasOne(at => at.Tag)
-                .WithMany(a => a.ArticleTags)
-                .HasForeignKey(at => at.TagId);
 
             builder.Entity<ArticleLike>()
                 .HasKey(l => new { l.ArticleId, l.UserId });

@@ -4,14 +4,16 @@ using Blog.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Blog.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201006204443_NewMigration3")]
+    partial class NewMigration3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -23,12 +25,6 @@ namespace Blog.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("CategoryId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("CategotyId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("ImagePath")
@@ -49,8 +45,6 @@ namespace Blog.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
 
                     b.HasIndex("UserId");
 
@@ -76,17 +70,6 @@ namespace Blog.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("ArticleLikes");
-                });
-
-            modelBuilder.Entity("Blog.Domain.Entities.Category", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("Blog.Domain.Entities.Comment", b =>
@@ -196,7 +179,7 @@ namespace Blog.Migrations
                         new
                         {
                             Id = "ED70FD60-DE76-4497-9FBB-822F7759DBAE",
-                            ConcurrencyStamp = "fd2c50e3-f5f6-4133-8bf1-b5f82a0954dc",
+                            ConcurrencyStamp = "980b24fb-a030-4299-81c0-9264acd4dd76",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         });
@@ -395,13 +378,13 @@ namespace Blog.Migrations
                         {
                             Id = "DD20FD22-4350-4D1C-98C4-E82F21C1F414",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e13db17b-0891-4d1c-b57e-a2b59bedd3d4",
+                            ConcurrencyStamp = "659a2fae-b551-4380-8e7f-6d79e619e9ac",
                             Email = "email@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "EMAIL@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEBJ27b2Zqf/YTL5M3cOwFAb45L4eRK6wEAGWCin2THLbElTXADkH8ZA+hILfBjVGYQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEF+wNNAE7bRd4zlKZfsHQjwtfETQ21o8EjW33aAtr5DPOFiu319ttLRq42BwL+aAIw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -411,10 +394,6 @@ namespace Blog.Migrations
 
             modelBuilder.Entity("Blog.Domain.Entities.Article", b =>
                 {
-                    b.HasOne("Blog.Domain.Entities.Category", "Category")
-                        .WithMany("Articles")
-                        .HasForeignKey("CategoryId");
-
                     b.HasOne("Blog.Domain.Entities.User", "User")
                         .WithMany("Articles")
                         .HasForeignKey("UserId");
