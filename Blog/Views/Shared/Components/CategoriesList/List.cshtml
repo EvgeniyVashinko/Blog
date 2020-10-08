@@ -3,6 +3,6 @@
 <ul>
     @foreach (var str in Model)
     {
-        <li><a asp-area="" asp-controller="Blog" asp-action="Category" asp-route-name="@str">@str</a></li>
+        <li><a asp-area="" asp-controller="@ViewBag.contr" asp-action="@ViewBag.actn" asp-route-name="@str"asp-route-id="@ViewBag.aid">@str</a></li>
     }
 </ul>

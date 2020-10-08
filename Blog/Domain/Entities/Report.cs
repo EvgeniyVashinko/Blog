@@ -8,11 +8,13 @@ namespace Blog.Domain.Entities
 {
     public class Report : EntityBase 
     {
-        [Required]
-        public string Text { get; set; }
+        //[Required]
+        //public string Text { get; set; }
         public string UserId { get; set; }
         public User User { get; set; }
         public Guid ArticleId { get; set; }
         public Article Article { get; set; }
+        public Guid ReportCategoryId { get; set; }
+        public ReportCategory ReportCategory { get; set; }
     }
 }

@@ -19,6 +19,7 @@ namespace Blog.Domain
         public DbSet<Profile> Profiles { get; set; }
         public DbSet<Report> Reports { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<ReportCategory> ReportCategories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -70,6 +71,32 @@ namespace Blog.Domain
             {
                 RoleId = "ED70FD60-DE76-4497-9FBB-822F7759DBAE",
                 UserId = "DD20FD22-4350-4D1C-98C4-E82F21C1F414"
+            });
+
+            builder.Entity<ReportCategory>().HasData(new ReportCategory
+            {
+                Id = Guid.NewGuid(),
+                Name = "Пропаганда наркотиков"
+            });
+            builder.Entity<ReportCategory>().HasData(new ReportCategory
+            {
+                Id = Guid.NewGuid(),
+                Name = "Порнография"
+            });
+            builder.Entity<ReportCategory>().HasData(new ReportCategory
+            {
+                Id = Guid.NewGuid(),
+                Name = "Продажа оружия"
+            });
+            builder.Entity<ReportCategory>().HasData(new ReportCategory
+            {
+                Id = Guid.NewGuid(),
+                Name = "Мошенничество"
+            });
+            builder.Entity<ReportCategory>().HasData(new ReportCategory
+            {
+                Id = Guid.NewGuid(),
+                Name = "Призыв к суициду"
             });
         }
     }

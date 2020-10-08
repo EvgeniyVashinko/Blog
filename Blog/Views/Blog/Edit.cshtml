@@ -1,4 +1,5 @@
 ﻿@model Article
+@inject Blog.Domain.DataManager dataManager;
 
 @{
     ViewData["Title"] = "Статья";
@@ -30,7 +31,7 @@
                 </div>
                 <div>
                     <label>Категория:</label>
-                    <vc:categories-list select="true"></vc:categories-list>
+                    <vc:categories-list list="@dataManager.Categories.GetCategoriesStringList()" select="true" contr="" actn="" id=""></vc:categories-list>
                 </div>
                 <div>
                     <label asp-for="Text"></label>

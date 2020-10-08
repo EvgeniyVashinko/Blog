@@ -1,4 +1,5 @@
 ﻿@model Article
+@inject Blog.Domain.DataManager dataManager;
 
 @{
     ViewData["Title"] = "Статья";
@@ -16,14 +17,29 @@
 
     @Html.Raw(Model.Text)
 
-    <ul class="icons">
-        <li>
-            <strong>@Model.ArticleLikes.Count()</strong>
-        </li>
-        <li>
-            <a asp-controller="Blog" asp-action="ArticleLike" asp-route-id="@Model.Id" class="icon fa fa-thumbs-up" aria-hidden="true"></a>
-        </li>
-    </ul>
+    <div class="row">
+        <div class="col-9 col-12-medium">
+            <ul class="icons">
+                <li>
+                    <strong>@Model.ArticleLikes.Count()</strong>
+                </li>
+                <li>
+                    <a asp-controller="Blog" asp-action="ArticleLike" asp-route-id="@Model.Id" class="icon fa fa-thumbs-up" aria-hidden="true"></a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-3 col-12-medium inner">
+                <nav id="menu">
+                    <ul>
+                        <li>
+                            <span class="opener">Пожаловаться</span>
+                            <vc:categories-list list="@dataManager.ReportCategories.GetReportCategoriesStringList()" select="false" contr="Article" actn="Report" id="@Model.Id"></vc:categories-list>
+                        </li>
+                    </ul>
+                </nav>
+        </div>
+    </div>
+
 
     <form asp-controller="Blog" asp-action="CreateComment">
         <input type="hidden" asp-for="Id" />

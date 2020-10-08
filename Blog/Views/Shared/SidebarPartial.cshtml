@@ -1,5 +1,6 @@
 ﻿@inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
+@inject Blog.Domain.DataManager dataManager
 <div id="sidebar">
     <div class="inner">
 
@@ -26,7 +27,7 @@
                 <li><a href="/">Главная</a></li>
                 <li>
                     <span class="opener">Категории</span>
-                    <vc:categories-list select="false"></vc:categories-list>
+                    <vc:categories-list list="@dataManager.Categories.GetCategoriesStringList()" select="false" contr="Blog" actn="Category" id=""></vc:categories-list>
                 </li>
                 @if (SignInManager.IsSignedIn(User))
                 {

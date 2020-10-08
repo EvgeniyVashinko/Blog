@@ -36,6 +36,8 @@ namespace Blog
             services.AddTransient<IArticleRepository, EFArticleRepository>();
             services.AddTransient<ICommentRepository, EFCommentRepository>();
             services.AddTransient<ICategoryRepository, EFCategoryRepository>();
+            services.AddTransient<IReportCategoryRepository, EFReportCategoryRepository>();
+            services.AddTransient<IReportRepository, EFReportRepository>();
             services.AddTransient<DataManager>();
 
             services.AddDbContext<AppDbContext>(x => x.UseSqlServer(Config.ConnectionString));
