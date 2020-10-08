@@ -11,6 +11,6 @@ namespace Blog.Domain.Entities
         public Guid Id { get; set; }
         [Required]
         public string Name { get; set; }
-        public Report Report { get; set; }
+        public List<Report> Reports { get; set; }
     }
 }

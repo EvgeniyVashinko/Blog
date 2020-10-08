@@ -26,10 +26,15 @@ namespace Blog.Controllers
             var cat = dataManager.ReportCategories.GetReportCategory(name);
             var user = await userManager.GetUserAsync(HttpContext.User);
             var article = dataManager.Articles.GetArticle(id);
-            var report = new Report { Article = article, User = user, ReportCategory = cat };
-            dataManager.Reports.SaveReport(report);
+
+            var rep = dataManager.Reports.GetReport(article.Id, cat.Id, user.Id);
+            if (rep == null)
+            {
+                var report = new Report { Article = article, User = user, ReportCategory = cat };
+                dataManager.Reports.SaveReport(report);
+            }
+
             return RedirectToAction("Show", "Blog", new { id = id });
         }
-
     }
 }

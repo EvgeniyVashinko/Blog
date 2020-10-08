@@ -24,8 +24,14 @@ namespace Blog.Domain.Repositories.EntityFramework
 
         public Report GetReport(Guid id)
         {
-            var reports = context.Reports.FirstOrDefault(r=>r.Id == id);
-            return reports;
+            var report = context.Reports.FirstOrDefault(r=>r.Id == id);
+            return report;
+        }
+        public Report GetReport(Guid articleId, Guid reportCategoryId, string userId)
+        {
+            var report = context.Reports.Where(r => r.ArticleId == articleId && r.ReportCategoryId == reportCategoryId)
+                .FirstOrDefault(r=>r.UserId == userId);
+            return report;
         }
 
         public IQueryable<Report> GetReports()

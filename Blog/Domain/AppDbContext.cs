@@ -37,7 +37,7 @@ namespace Blog.Domain
                 .HasForeignKey(al => al.UserId);
 
             builder.Entity<Report>()
-                .HasKey(r => new { r.ArticleId, r.UserId });
+                .HasKey(r => new { r.ArticleId, r.UserId, r.ReportCategoryId });
             builder.Entity<Report>()
                 .HasOne(r => r.Article)
                 .WithMany(a => a.Reports)
@@ -46,7 +46,11 @@ namespace Blog.Domain
                 .HasOne(r => r.User)
                 .WithMany(u => u.Reports)
                 .HasForeignKey(r => r.UserId);
-               
+            builder.Entity<Report>()
+                .HasOne(r => r.ReportCategory)
+                .WithMany(rc => rc.Reports)
+                .HasForeignKey(r => r.ReportCategoryId);
+
             builder.Entity<IdentityRole>().HasData(new IdentityRole
             {
                 Id = "ED70FD60-DE76-4497-9FBB-822F7759DBAE",

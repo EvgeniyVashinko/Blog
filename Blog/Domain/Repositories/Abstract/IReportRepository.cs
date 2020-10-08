@@ -10,6 +10,7 @@ namespace Blog.Domain.Repositories.Abstract
     {
         IQueryable<Report> GetReports();
         Report GetReport(Guid id);
+        Report GetReport(Guid articleId, Guid reportCategoryId, string userId);
         IQueryable<Report> GetReportsByUser(User user);
         IQueryable<Report> GetReportsByArticle(Article article);
         IQueryable<Report> GetReportsByCategory(ReportCategory category);

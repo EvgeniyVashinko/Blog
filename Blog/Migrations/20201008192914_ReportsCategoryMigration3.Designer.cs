@@ -4,14 +4,16 @@ using Blog.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Blog.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201008192914_ReportsCategoryMigration3")]
+    partial class ReportsCategoryMigration3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -163,7 +165,8 @@ namespace Blog.Migrations
 
                     b.HasKey("ArticleId", "UserId", "ReportCategoryId");
 
-                    b.HasIndex("ReportCategoryId");
+                    b.HasIndex("ReportCategoryId")
+                        .IsUnique();
 
                     b.HasIndex("UserId");
 
@@ -187,27 +190,27 @@ namespace Blog.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("7aeb102f-b9ab-46a6-8100-fd06bf9d08b8"),
+                            Id = new Guid("f67819b2-5260-45f4-b1fc-63f2360d9a3a"),
                             Name = "Пропаганда наркотиков"
                         },
                         new
                         {
-                            Id = new Guid("af264510-cab8-4ee0-9fc5-53bfd7b85160"),
+                            Id = new Guid("2ea7e590-5d0f-40fa-ab6e-0b24ee13826f"),
                             Name = "Порнография"
                         },
                         new
                         {
-                            Id = new Guid("147bdf05-77a4-4061-868c-4509b48b4fbd"),
+                            Id = new Guid("99605e3d-262a-485a-81e8-7cd1fcc56c52"),
                             Name = "Продажа оружия"
                         },
                         new
                         {
-                            Id = new Guid("2c3c7ed0-7bc1-4898-9209-f571f3737a89"),
+                            Id = new Guid("fde9843a-b59a-4595-a4bc-9b7d05cee742"),
                             Name = "Мошенничество"
                         },
                         new
                         {
-                            Id = new Guid("89381d79-612b-4081-9597-e69527a59a87"),
+                            Id = new Guid("71bf669f-548f-4997-b981-6304d6766929"),
                             Name = "Призыв к суициду"
                         });
                 });
@@ -242,7 +245,7 @@ namespace Blog.Migrations
                         new
                         {
                             Id = "ED70FD60-DE76-4497-9FBB-822F7759DBAE",
-                            ConcurrencyStamp = "ec2d88bb-4cab-41e0-b402-eac184a5396f",
+                            ConcurrencyStamp = "4e29ff6e-e39d-423c-9bb8-92cb9f3b83b9",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         });
@@ -441,13 +444,13 @@ namespace Blog.Migrations
                         {
                             Id = "DD20FD22-4350-4D1C-98C4-E82F21C1F414",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "448b5dcb-93b4-48c1-beb3-0df432bad85a",
+                            ConcurrencyStamp = "1f8f7f33-100c-44bc-a1a0-d73531c0ab2d",
                             Email = "email@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "EMAIL@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKyFPdI4fsMFpMuFUH41Izy8jKgJIHb20UZODOCJnHX2WEWP6VLhyB144I0L/MYCew==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEIwqf8lKbatCp12nZkJXlvfb5tMftHmz5UBHsJZOYSMV+haYe1j0WDYUSY83oDLM1A==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -510,8 +513,8 @@ namespace Blog.Migrations
                         .IsRequired();
 
                     b.HasOne("Blog.Domain.Entities.ReportCategory", "ReportCategory")
-                        .WithMany("Reports")
-                        .HasForeignKey("ReportCategoryId")
+                        .WithOne("Report")
+                        .HasForeignKey("Blog.Domain.Entities.Report", "ReportCategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
