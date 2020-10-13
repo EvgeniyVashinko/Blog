@@ -10,6 +10,7 @@ namespace Blog.Domain.Repositories.Abstract
     {
         IQueryable<Article> GetArticles();
         IQueryable<Article> GetArticlesByUser(User user);
+        IQueryable<Article> GetArticlesByUser(string id);
         Article GetArticle(Guid id);
         //IQueryable<Article> GetArticlesByTitle();
         void SaveArticle(Article article);

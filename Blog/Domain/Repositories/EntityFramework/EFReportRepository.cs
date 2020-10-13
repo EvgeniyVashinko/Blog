@@ -16,9 +16,9 @@ namespace Blog.Domain.Repositories.EntityFramework
             this.context = context;
         }
 
-        public void DeleteReport(Guid id)
+        public void DeleteReport(Guid articleId, Guid reportCategoryId, string userId)
         {
-            context.Reports.Remove(new Report() { Id = id });
+            context.Reports.Remove(new Report() { ArticleId = articleId, ReportCategoryId = reportCategoryId, UserId = userId});
             context.SaveChanges();
         }
 
@@ -36,6 +36,9 @@ namespace Blog.Domain.Repositories.EntityFramework
 
         public IQueryable<Report> GetReports()
         {
+            context.Reports.Include(r => r.ReportCategory).ToList();
+            context.Reports.Include(r => r.Article).ToList();
+            context.Reports.Include(r => r.User).ToList();
             return context.Reports;
         }
 

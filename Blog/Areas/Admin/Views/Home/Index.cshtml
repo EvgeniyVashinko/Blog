@@ -1,1 +1,19 @@
-﻿стр админа
+﻿@{
+    ViewData["Title"] = "Администратор";
+}
+
+<section>
+    <div>
+        <ul>
+            <li>
+                <a asp-area="admin" asp-controller="Home" asp-action="Users">Пользователи</a>
+            </li>
+            <li>
+                <a asp-area="admin" asp-controller="Home" asp-action="Articles">Статьи</a>
+            </li>
+            <li>
+                <a asp-area="admin" asp-controller="Home" asp-action="Reports">Жалобы</a>
+            </li>
+        </ul>
+    </div>
+</section>

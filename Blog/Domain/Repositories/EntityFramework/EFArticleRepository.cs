@@ -27,6 +27,11 @@ namespace Blog.Domain.Repositories.EntityFramework
             context.Articles.Include(a => a.ArticleLikes).ToList();
             return context.Articles.Where(x => x.User.Equals(user));
         }
+        public IQueryable<Article> GetArticlesByUser(string id)
+        {
+            context.Articles.Include(a => a.ArticleLikes).ToList();
+            return context.Articles.Where(x => x.UserId == id);
+        }
 
         public IQueryable<Article> GetArticles()
         {

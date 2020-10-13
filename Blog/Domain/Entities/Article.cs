@@ -18,7 +18,7 @@ namespace Blog.Domain.Entities
         [Display(Name = "Путь к изображению")]
         public string ImagePath { get; set; }
         public List<Comment> Comments { get; set; }
-
+        public string UserId { get; set; }
         public User User { get; set; }
         public List<ArticleLike> ArticleLikes { get; set; }
         public List<Report> Reports { get; set; }

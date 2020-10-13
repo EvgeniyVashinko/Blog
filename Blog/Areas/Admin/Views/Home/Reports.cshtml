@@ -1,0 +1,34 @@
+﻿@model IQueryable<Report>
+
+@{
+    ViewData["Title"] = "Reports";
+}
+
+<h1>Reports</h1>
+
+<div class="table-wrapper">
+    <table class="alt">
+        <thead>
+            <tr>
+                <th>Причина</th>
+                <th>Статья</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var report in Model)
+            {
+                <tr>
+                    <td>@report.ReportCategory.Name</td>
+                    <td>@report.Article.Title</td>
+                    <td>
+                        <ul class="actions">
+                            <li><a asp-area="admin" asp-controller="Home" asp-action="EditArticle" asp-route-articleid="@report.ArticleId" class="button">Редактировать</a></li>
+                            <li><a asp-area="admin" asp-controller="Home" asp-action="DeleteReport" asp-route-articleid="@report.ArticleId" asp-route-categoryid="@report.ReportCategoryId" asp-route-userid="@report.UserId" class="button">Удалить</a></li>
+                        </ul>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

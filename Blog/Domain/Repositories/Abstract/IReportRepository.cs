@@ -15,6 +15,6 @@ namespace Blog.Domain.Repositories.Abstract
         IQueryable<Report> GetReportsByArticle(Article article);
         IQueryable<Report> GetReportsByCategory(ReportCategory category);
         void SaveReport(Report comment);
-        void DeleteReport(Guid id);
+        void DeleteReport(Guid articleId, Guid reportCategoryId, string userId);
     }
 }

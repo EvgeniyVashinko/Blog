@@ -1,0 +1,61 @@
+﻿@model Article
+@inject Blog.Domain.DataManager dataManager;
+
+@{
+    ViewData["Title"] = "EditArticle";
+}
+
+<script src="~/js/ckeditor/ckeditor.js"></script>
+<section>
+    <h2>Редактировать</h2>
+
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="EditArticle" enctype="multipart/form-data">
+                <input type="hidden" asp-for="PublishDate" />
+                <input type="hidden" asp-for="Id" />
+                <input type="hidden" asp-for="ImagePath" />
+                <input type="hidden" asp-for="UserId" />
+
+                <div asp-validation-summary="All"></div>
+                <div class="form-group">
+                    <label asp-for="Title"></label>
+                    <input asp-for="Title" />
+                    <span asp-validation-for="Title"></span>
+                </div>
+                <div>
+                    <label>Категория:</label>
+                    <vc:categories-list list="@dataManager.Categories.GetCategoriesStringList()" select="true" contr="" actn="" id=""></vc:categories-list>
+                </div>
+                <div>
+                    <label asp-for="Text"></label>
+                    <textarea asp-for="Text"></textarea>
+                    <span asp-validation-for="Text"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ImagePath"></label>
+                    <input type="file" name="imgFile" id="imgFile" />
+                    <div>
+                        <span class="image left"><img src="~/images/@Model.ImagePath" /></span>
+                    </div>
+                </div>
+                <br /><br />
+                @if (Model.ImagePath != null)@*Не будем о грустном))*@
+                {
+                    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+                }
+                <div class="form-group">
+                    <input type="submit" value="Сохранить" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<script>
+    window.onload = function () {
+        var newCKEdit = CKEDITOR.replace('@Html.IdFor(x=>x.Text)');
+        newCKEdit.updateElement();
+    }
+</script>
+
