@@ -1,10 +1,10 @@
 ﻿@model IQueryable<Report>
 
 @{
-    ViewData["Title"] = "Reports";
+    ViewData["Title"] = "Жалобы";
 }
 
-<h1>Reports</h1>
+<h1>Жалобы</h1>
 
 <div class="table-wrapper">
     <table class="alt">
@@ -23,8 +23,8 @@
                     <td>@report.Article.Title</td>
                     <td>
                         <ul class="actions">
-                            <li><a asp-area="admin" asp-controller="Home" asp-action="EditArticle" asp-route-articleid="@report.ArticleId" class="button">Редактировать</a></li>
-                            <li><a asp-area="admin" asp-controller="Home" asp-action="DeleteReport" asp-route-articleid="@report.ArticleId" asp-route-categoryid="@report.ReportCategoryId" asp-route-userid="@report.UserId" class="button">Удалить</a></li>
+                            <li><a asp-area="admin" asp-controller="Home" asp-action="EditArticle" asp-route-articleid="@report.ArticleId" class="button">Редактировать статью</a></li>
+                            <li><a asp-area="admin" asp-controller="Home" asp-action="DeleteReport" asp-route-articleid="@report.ArticleId" asp-route-categoryid="@report.ReportCategoryId" asp-route-userid="@report.UserId" class="button">Удалить жалобу</a></li>
                         </ul>
                     </td>
                 </tr>

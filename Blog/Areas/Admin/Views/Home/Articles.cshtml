@@ -1,24 +1,28 @@
 ﻿@model IQueryable<Article>
-
+@inject Microsoft.AspNetCore.Identity.UserManager<User> userManager
 @{
-    ViewData["Title"] = "Articles";
+    ViewData["Title"] = "Статьи";
 }
 
-<h1>Articles</h1>
+<h1>Статьи</h1>
 
 <div class="table-wrapper">
     <table class="alt">
         <thead>
             <tr>
                 <th>Заглавие</th>
+                <th>Автор</th>
                 <th>Действия</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var article in Model)
             {
+                var uid = article.UserId;
+                var username = userManager.FindByIdAsync(uid).Result.UserName;
                 <tr>
                     <td>@article.Title</td>
+                    <td>@username</td>
                     <td>
                         <ul class="actions">
                             <li><a asp-area="admin" asp-controller="Home" asp-action="EditArticle" asp-route-articleid="@article.Id" class="button">Редактировать</a></li>
