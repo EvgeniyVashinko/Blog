@@ -29,6 +29,9 @@
                     <li><a asp-area="" asp-controller="Blog" asp-action="Edit" asp-route-id="@article.Id" class="button">Редактировать</a></li>
                     <li><a asp-area="" asp-controller="Blog" asp-action="Delete" asp-route-id="@article.Id" class="button">Удалить</a></li>
                 </ul>
+                @*<form asp-area="" asp-controller="Blog" asp-action="Delete" method="post">
+                    <input type="submit" value="Удалить" />
+                </form>*@
                 </article>
             }
         }

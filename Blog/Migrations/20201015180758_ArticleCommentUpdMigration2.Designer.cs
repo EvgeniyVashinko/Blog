@@ -4,14 +4,16 @@ using Blog.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Blog.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201015180758_ArticleCommentUpdMigration2")]
+    partial class ArticleCommentUpdMigration2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -187,27 +189,27 @@ namespace Blog.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("95a44d89-8ba8-4b27-b0a8-df71257c9950"),
+                            Id = new Guid("3d8dfbfe-4ac7-4888-a983-56a51043e125"),
                             Name = "Пропаганда наркотиков"
                         },
                         new
                         {
-                            Id = new Guid("bfbc4faa-a037-46b8-8127-24b5a027fa2f"),
+                            Id = new Guid("4c560ee6-4cbe-4c20-82a0-0695d0ae8483"),
                             Name = "Порнография"
                         },
                         new
                         {
-                            Id = new Guid("52601429-718c-48fd-bff2-b17a0931be3c"),
+                            Id = new Guid("cef4d27d-836e-45c9-b072-d6b7d3d83959"),
                             Name = "Продажа оружия"
                         },
                         new
                         {
-                            Id = new Guid("964fb2b5-5075-462c-aefd-b58a6491efd5"),
+                            Id = new Guid("2f765218-b157-4f91-b404-2f6d1cd2926e"),
                             Name = "Мошенничество"
                         },
                         new
                         {
-                            Id = new Guid("91a58ec2-fa32-4c2b-b7ab-a3cfa40e16aa"),
+                            Id = new Guid("00cc763c-3708-4a04-9efd-7eeba27dd2ef"),
                             Name = "Призыв к суициду"
                         });
                 });
@@ -242,7 +244,7 @@ namespace Blog.Migrations
                         new
                         {
                             Id = "ED70FD60-DE76-4497-9FBB-822F7759DBAE",
-                            ConcurrencyStamp = "d38b29a1-8444-4499-8865-5cc4e3ce2f34",
+                            ConcurrencyStamp = "1802311e-d917-47a9-b09c-9301eee669ec",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         });
@@ -441,13 +443,13 @@ namespace Blog.Migrations
                         {
                             Id = "DD20FD22-4350-4D1C-98C4-E82F21C1F414",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "867a5ff6-6026-4677-b4a8-ad16d5ec29d0",
+                            ConcurrencyStamp = "cf5a14f1-f3da-4135-adcc-1165333c4d0f",
                             Email = "email@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "EMAIL@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJegWGFcWX7C2tezIcNCg7b0i28FJJoEMaLebEZ0C2HriBv7+N7PO1xoLtvybDzULA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEIpEmeyQXCEBPcsWcsVFJHHX3m7IADJEcuVRbavXEGajBFgmW7mhYxkgqkg2kqLAvQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,

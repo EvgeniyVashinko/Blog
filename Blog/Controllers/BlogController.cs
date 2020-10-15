@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Blog.Domain;
 using Blog.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -13,6 +14,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Blog.Controllers
 {
+    [Authorize]
     public class BlogController : Controller
     {
         private readonly DataManager dataManager;
@@ -70,7 +72,7 @@ namespace Blog.Controllers
             var user = await userManager.GetUserAsync(HttpContext.User);
             return View(dataManager.Articles.GetArticlesByUser(user));
         }
-
+        [AllowAnonymous]
         public IActionResult FreshArticles()
         {
             var articles = from article in dataManager.Articles.GetArticles()
@@ -83,6 +85,7 @@ namespace Blog.Controllers
         }
 
         //Добавить лайки к записям и выбирать по наиболее популярным
+        [AllowAnonymous]
         public IActionResult PopularArticles()
         {
             var articles = from article in dataManager.Articles.GetArticles()
@@ -92,6 +95,7 @@ namespace Blog.Controllers
             ViewBag.actn = "PopularArticles";
             return View("FreshArticles", articles);
         }
+        [AllowAnonymous]
         public IActionResult Show(Guid id)
         {
             var article = dataManager.Articles.GetArticle(id);
@@ -107,6 +111,10 @@ namespace Blog.Controllers
         {
             Comment comment = new Comment();
             var user = await userManager.GetUserAsync(HttpContext.User);
+            if (user == null)
+            {
+                return View("Show", dataManager.Articles.GetArticle(id)); ;
+            }
             comment.Article = dataManager.Articles.GetArticle(id);
             comment.User = user;
             comment.Text = tarea;
@@ -141,6 +149,7 @@ namespace Blog.Controllers
             }
             return RedirectToAction(actn,cntrl,new { name = name});
         }
+        [AllowAnonymous]
         public IActionResult Category(string name)
         {
             var cat = dataManager.Categories.GetCategory(name);

@@ -1,5 +1,6 @@
 ﻿@model Article
 @inject Blog.Domain.DataManager dataManager;
+@inject UserManager<User> userManager
 
 @{
     ViewData["Title"] = "Статья";
@@ -57,17 +58,19 @@
     {
         @foreach (Comment comment in ViewBag.Comments)
         {
+            var uid = comment.UserId.ToString();
+            var username = userManager.FindByIdAsync(uid).Result.UserName;
             <div class="box">
-                <a href=""><h4>UserName</h4></a>
+                <a href=""><h4>@username</h4></a>
                 <p>@comment.Text</p>
-                <ul class="icons">
+                @*<ul class="icons">
                     <li>
                         <strong> Like amount... </strong>
                     </li>
                     <li>
                         <a href="#" class="icon fa fa-thumbs-up" aria-hidden="true"></a>
                     </li>
-                </ul>
+                </ul>*@
             </div>
         }
     }
