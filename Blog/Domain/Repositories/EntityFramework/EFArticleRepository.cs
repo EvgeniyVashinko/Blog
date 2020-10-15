@@ -54,7 +54,7 @@ namespace Blog.Domain.Repositories.EntityFramework
 
         public void DeleteArticle(Guid id)
         {
-            context.Articles.Remove(new Article() { Id = id });
+            context.Articles.Remove(new Article { Id = id });
             context.SaveChanges();
         }
 

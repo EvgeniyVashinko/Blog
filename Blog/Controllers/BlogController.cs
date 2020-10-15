@@ -26,10 +26,18 @@ namespace Blog.Controllers
             this.webHostEnvironment = webHostEnvironment;
             this.userManager = userManager;
         }
-        public IActionResult Edit(Guid id)
+        public async Task<IActionResult> Edit(Guid id)
         {
             ViewBag.Head = "Новый пост";
             var article = id == default ? new Article() : dataManager.Articles.GetArticle(id);
+            if (article.Id != default)
+            {
+                var user = await userManager.GetUserAsync(HttpContext.User);
+                if (user.Id != article.UserId)
+                {
+                    return View("NoAccessPage");
+                }
+            }
             return View(article);
         }
         [HttpPost]
@@ -54,11 +62,22 @@ namespace Blog.Controllers
             return View(model);
         }
 
-        //[HttpPost]
+        [ActionName("Delete")]
+        public async Task<IActionResult> ConfirmDelete(Guid id)
+        {
+            var user = await userManager.GetUserAsync(HttpContext.User);
+            var article = dataManager.Articles.GetArticle(id);
+            if (user.Id != article.UserId)
+            {
+                return View("NoAccessPage");
+            }
+            return View(article);
+        }
+        [HttpPost]
         public IActionResult Delete(Guid id)
         {
             dataManager.Articles.DeleteArticle(id);
-            return RedirectToAction(nameof(HomeController.Index), nameof(HomeController).Replace("Controller", ""));
+            return RedirectToAction(nameof(BlogController.EditArticles), nameof(BlogController).Replace("Controller", ""));
         }
 
         public async Task<IActionResult> UserArticles()
