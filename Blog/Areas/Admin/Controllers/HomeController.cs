@@ -94,5 +94,53 @@ namespace Blog.Areas.Admin.Controllers
             dataManager.Reports.DeleteReport(articleId, categoryId, userId);
             return RedirectToAction("Reports");
         }
+        public IActionResult ReportCategories()
+        {
+            return View(dataManager.ReportCategories.GetReportCategories());
+        }
+        public IActionResult ArticleCategories()
+        {
+            return View(dataManager.Categories.GetCategories());
+        }
+        public IActionResult EditReportCategory(Guid id)
+        {
+            var category = id == default ? new ReportCategory() : dataManager.ReportCategories.GetReportCategory(id);
+            return View(category);
+        }
+        [HttpPost]
+        public IActionResult EditReportCategory(ReportCategory model)
+        {
+            if (ModelState.IsValid)
+            {
+                dataManager.ReportCategories.SaveReportCategory(model);
+                return RedirectToAction("ReportCategories");
+            }
+            return View(model);
+        }
+        public IActionResult DeleteReportCategory(Guid id)
+        {
+            dataManager.ReportCategories.DeleteReportCategory(id);
+            return RedirectToAction("ReportCategories");
+        }
+        public IActionResult EditArticleCategory(Guid id)
+        {
+            var category = id == default ? new Category() : dataManager.Categories.GetCategory(id);
+            return View(category);
+        }
+        [HttpPost]
+        public IActionResult EditArticleCategory(Category model)
+        {
+            if (ModelState.IsValid)
+            {
+                dataManager.Categories.SaveCategory(model);
+                return RedirectToAction("ArticleCategories");
+            }
+            return View(model);
+        }
+        public IActionResult DeleteArticleCategory(Guid id)
+        {
+            dataManager.Categories.DeleteCategory(id);
+            return RedirectToAction("ArticleCategories");
+        }
     }
 }

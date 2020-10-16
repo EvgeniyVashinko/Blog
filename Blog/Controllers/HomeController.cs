@@ -16,6 +16,7 @@ namespace Blog.Controllers
         {
             this.dataManager = dataManager;
         }
+        [AllowAnonymous]
         public IActionResult Index()
         {
             return View(dataManager.Articles.GetArticles());

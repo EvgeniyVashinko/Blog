@@ -19,7 +19,8 @@
             @foreach (var article in Model)
             {
                 var uid = article.UserId;
-                var username = userManager.FindByIdAsync(uid).Result.UserName;
+
+                var username = uid == null ? "NoName" : userManager.FindByIdAsync(uid).Result.UserName;
                 <tr>
                     <td>@article.Title</td>
                     <td>@username</td>
