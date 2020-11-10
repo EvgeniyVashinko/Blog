@@ -1,6 +1,7 @@
 ﻿@model Article
 @inject Blog.Domain.DataManager dataManager;
 @inject UserManager<User> userManager
+@inject SignInManager<User> SignInManager
 
 @{
     ViewData["Title"] = "Статья";
@@ -30,49 +31,59 @@
             </ul>
         </div>
         <div class="col-3 col-12-medium inner">
-                <nav id="menu">
-                    <ul>
-                        <li>
-                            <span class="opener">Пожаловаться</span>
-                            <vc:categories-list list="@dataManager.ReportCategories.GetReportCategoriesStringList()" select="false" contr="Article" actn="Report" id="@Model.Id"></vc:categories-list>
-                        </li>
-                    </ul>
-                </nav>
+            <nav id="menu">
+                <ul>
+                    <li>
+                        <span class="opener">Пожаловаться</span>
+                        <vc:categories-list list="@dataManager.ReportCategories.GetReportCategoriesStringList()" select="false" contr="Article" actn="Report" id="@Model.Id"></vc:categories-list>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </div>
 
 
-    <form asp-controller="Blog" asp-action="CreateComment">
-        <input type="hidden" asp-for="Id" />
-        <div>
-            <textarea placeholder="Введите текст комментария" rows="6" name="tarea"></textarea>
-        </div>
-        <br />
-        <div>
-            <input type="submit" value="Отправить" class="primary" />
-        </div>
-    </form>
+    @*<form asp-controller="Blog" asp-action="CreateComment">
+            <input type="hidden" asp-for="Id" />
+            <div>
+                <textarea placeholder="Введите текст комментария" rows="6" name="tarea"></textarea>
+            </div>
+            <br />
+            <div>
+                <input type="submit" value="Отправить" class="primary" />
+            </div>
+        </form>*@
+
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <form>
+            <input type="hidden" asp-for="@Model.Id" class="form-control" id="articleId" />
+            <div class="form-group">
+                <textarea class="form-control" placeholder="Комментарий" rows="6" id="content"></textarea>
+            </div>
+            <br />
+            <div class="form-group">
+                <input class="btn btn-primary" type="submit" value="Отправить" id="send" />
+            </div>
+        </form>
+    }
 
     <br />
-    @if (ViewBag.Comments != null)
-    {
-        @foreach (Comment comment in ViewBag.Comments)
+    <div id="comments">
+        @if (ViewBag.Comments != null)
         {
-            var uid = comment.UserId.ToString();
-            var username = userManager.FindByIdAsync(uid).Result.UserName;
-            <div class="box">
-                <a href=""><h4>@username</h4></a>
-                <p>@comment.Text</p>
-                @*<ul class="icons">
-                    <li>
-                        <strong> Like amount... </strong>
-                    </li>
-                    <li>
-                        <a href="#" class="icon fa fa-thumbs-up" aria-hidden="true"></a>
-                    </li>
-                </ul>*@
-            </div>
+            @foreach (Comment comment in ViewBag.Comments)
+            {
+                var uid = comment.UserId.ToString();
+                var username = userManager.FindByIdAsync(uid).Result.UserName;
+                <div class="box">
+                    <a href=""><h4>@username</h4></a>
+                    <p>@comment.Text</p>
+                </div>
+            }
         }
-    }
+    </div>
+    <script src="~/js/signalr/dist/browser/signalr.min.js"></script>
+    <script src="~/js/sendComments.js"></script>
 </section>
 

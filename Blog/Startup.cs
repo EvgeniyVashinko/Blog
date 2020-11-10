@@ -6,6 +6,7 @@ using Blog.Domain;
 using Blog.Domain.Entities;
 using Blog.Domain.Repositories.Abstract;
 using Blog.Domain.Repositories.EntityFramework;
+using Blog.Hubs;
 using Blog.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -70,6 +71,12 @@ namespace Blog
             {
                 x.Conventions.Add(new AdminAreaAuthorization("Admin", "AdminArea"));
             }).SetCompatibilityVersion(CompatibilityVersion.Version_3_0).AddSessionStateTempDataProvider();
+
+            services.AddSignalR(hubOptions =>
+            {
+                hubOptions.EnableDetailedErrors = true;
+                hubOptions.KeepAliveInterval = TimeSpan.FromMinutes(1);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -93,6 +100,7 @@ namespace Blog
             {
                 endpoints.MapControllerRoute("admin", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapHub<CommentsHub>("/comment");
             });
         }
     }
