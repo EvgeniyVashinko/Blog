@@ -26,7 +26,8 @@
                     <strong>@Model.ArticleLikes.Count()</strong>
                 </li>
                 <li>
-                    <a asp-controller="Blog" asp-action="ArticleLike" asp-route-id="@Model.Id" class="icon fa fa-thumbs-up" aria-hidden="true"></a>
+                    @*<a asp-controller="Blog" asp-action="ArticleLike" asp-route-id="@Model.Id" class="icon fa fa-thumbs-up" aria-hidden="true"></a>*@
+                    <button id="likeButton"><i class="icon fa fa-thumbs-up" aria-hidden="true"></i></button>
                 </li>
             </ul>
         </div>

@@ -58,6 +58,13 @@ namespace Blog.Domain
                 NormalizedName = "ADMIN"
             });
 
+            builder.Entity<IdentityRole>().HasData(new IdentityRole
+            {
+                Id = "5D4135A4-6F21-4833-81D1-128104AA12C0",
+                Name = "superadmin",
+                NormalizedName = "SUPERADMIN"
+            });
+
             builder.Entity<User>().HasData(new User
             {
                 Id = "DD20FD22-4350-4D1C-98C4-E82F21C1F414",
@@ -74,6 +81,12 @@ namespace Blog.Domain
             builder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
             {
                 RoleId = "ED70FD60-DE76-4497-9FBB-822F7759DBAE",
+                UserId = "DD20FD22-4350-4D1C-98C4-E82F21C1F414"
+            });
+
+            builder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
+            {
+                RoleId = "5D4135A4-6F21-4833-81D1-128104AA12C0",
                 UserId = "DD20FD22-4350-4D1C-98C4-E82F21C1F414"
             });
 

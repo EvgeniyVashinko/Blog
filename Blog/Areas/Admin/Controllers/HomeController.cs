@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Blog.Domain;
 using Blog.Domain.Entities;
 using Blog.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -141,6 +142,21 @@ namespace Blog.Areas.Admin.Controllers
         {
             dataManager.Categories.DeleteCategory(id);
             return RedirectToAction("ArticleCategories");
+        }
+        [Authorize(Roles ="superadmin")]
+        public async Task<IActionResult> ChangeUserRole(string id)
+        {
+            var user = await userManager.FindByIdAsync(id);
+            if (userManager.IsInRoleAsync(user, "admin").Result)
+            {
+                await userManager.RemoveFromRoleAsync(user, "admin");
+            }
+            else
+            {
+                await userManager.AddToRoleAsync(user, "admin");
+            }
+            //await userManager.DeleteAsync(user);
+            return RedirectToAction("Users");
         }
     }
 }
