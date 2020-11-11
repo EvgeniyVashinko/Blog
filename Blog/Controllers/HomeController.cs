@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Blog.Domain;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Blog.Controllers
@@ -20,6 +22,15 @@ namespace Blog.Controllers
         public IActionResult Index()
         {
             return View(dataManager.Articles.GetArticles());
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public IActionResult CultureManagement(string culture, string returnUrl)
+        {
+            Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName, CookieRequestCultureProvider.MakeCookieValue(
+                new RequestCulture(culture)), new CookieOptions { Expires = DateTimeOffset.Now.AddDays(30) });
+            return Redirect(returnUrl ?? "/");
         }
     }
 }

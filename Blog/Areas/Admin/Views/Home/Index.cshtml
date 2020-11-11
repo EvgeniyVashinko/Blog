@@ -1,24 +1,26 @@
-﻿@{
-    ViewData["Title"] = "Администратор";
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+
+@{
+    ViewData["Title"] = localizer["title"];
 }
 
 <section>
     <div>
         <ul>
             <li>
-                <a asp-area="admin" asp-controller="Home" asp-action="Users">Пользователи</a>
+                <a asp-area="admin" asp-controller="Home" asp-action="Users">@localizer["users"]</a>
             </li>
             <li>
-                <a asp-area="admin" asp-controller="Home" asp-action="Articles">Статьи</a>
+                <a asp-area="admin" asp-controller="Home" asp-action="Articles">@localizer["articles"]</a>
             </li>
             <li>
-                <a asp-area="admin" asp-controller="Home" asp-action="Reports">Жалобы</a>
+                <a asp-area="admin" asp-controller="Home" asp-action="Reports">@localizer["reports"]</a>
             </li>
             <li>
-                <a asp-area="admin" asp-controller="Home" asp-action="ArticleCategories">Категории статей</a>
+                <a asp-area="admin" asp-controller="Home" asp-action="ArticleCategories">@localizer["articleCat"]</a>
             </li>
             <li>
-                <a asp-area="admin" asp-controller="Home" asp-action="ReportCategories">Виды жалоб</a>
+                <a asp-area="admin" asp-controller="Home" asp-action="ReportCategories">@localizer["reportCat"]</a>
             </li>
         </ul>
     </div>

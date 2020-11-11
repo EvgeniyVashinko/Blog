@@ -1,17 +1,18 @@
 ﻿@model IQueryable<Category>
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
 
 @{
-    ViewData["Title"] = "Категории статей";
+    ViewData["Title"] = localizer["title"];
 }
 
-<h1>Категории статей</h1>
+<h1>@localizer["title"]</h1>
 
 <div class="table-wrapper">
     <table class="alt">
         <thead>
             <tr>
-                <th>Название</th>
-                <th>Действия</th>
+                <th>@localizer["name"]</th>
+                <th>@localizer["action"]</th>
             </tr>
         </thead>
         <tbody>
@@ -21,8 +22,8 @@
                     <td>@category.Name</td>
                     <td>
                         <ul class="actions">
-                            <li><a asp-area="admin" asp-controller="Home" asp-action="EditArticleCategory" asp-route-id="@category.Id" class="button">Изменить</a></li>
-                            <li><a asp-area="admin" asp-controller="Home" asp-action="DeleteArticleCategory" asp-route-id="@category.Id" class="button">Удалить</a></li>
+                            <li><a asp-area="admin" asp-controller="Home" asp-action="EditArticleCategory" asp-route-id="@category.Id" class="button">@localizer["edit"]</a></li>
+                            <li><a asp-area="admin" asp-controller="Home" asp-action="DeleteArticleCategory" asp-route-id="@category.Id" class="button">@localizer["del"]</a></li>
                         </ul>
                     </td>
                 </tr>

@@ -2,9 +2,10 @@
 @inject Blog.Domain.DataManager dataManager;
 @inject UserManager<User> userManager
 @inject SignInManager<User> SignInManager
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
 
 @{
-    ViewData["Title"] = "Статья";
+    ViewData["Title"] = localizer["title"];
 }
 
 <section>
@@ -35,7 +36,7 @@
             <nav id="menu">
                 <ul>
                     <li>
-                        <span class="opener">Пожаловаться</span>
+                        <span class="opener">@localizer["complain"]</span>
                         <vc:categories-list list="@dataManager.ReportCategories.GetReportCategoriesStringList()" select="false" contr="Article" actn="Report" id="@Model.Id"></vc:categories-list>
                     </li>
                 </ul>
@@ -60,11 +61,11 @@
         <form>
             <input type="hidden" asp-for="@Model.Id" class="form-control" id="articleId" />
             <div class="form-group">
-                <textarea class="form-control" placeholder="Комментарий" rows="6" id="content"></textarea>
+                <textarea class="form-control" placeholder="@localizer["comm"]" rows="6" id="content"></textarea>
             </div>
             <br />
             <div class="form-group">
-                <input class="btn btn-primary" type="submit" value="Отправить" id="send" />
+                <input class="btn btn-primary" type="submit" value="@localizer["send"]" id="send" />
             </div>
         </form>
     }

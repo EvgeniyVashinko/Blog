@@ -1,18 +1,19 @@
 ﻿@model IQueryable<Report>
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
 
 @{
-    ViewData["Title"] = "Жалобы";
+    ViewData["Title"] = localizer["title"];
 }
 
-<h1>Жалобы</h1>
+<h1>@localizer["title"]</h1>
 
 <div class="table-wrapper">
     <table class="alt">
         <thead>
             <tr>
-                <th>Причина</th>
-                <th>Статья</th>
-                <th>Действия</th>
+                <th>@localizer["reason"]</th>
+                <th>@localizer["article"]</th>
+                <th>@localizer["action"]</th>
             </tr>
         </thead>
         <tbody>
@@ -23,8 +24,8 @@
                     <td>@report.Article.Title</td>
                     <td>
                         <ul class="actions">
-                            <li><a asp-area="admin" asp-controller="Home" asp-action="EditArticle" asp-route-articleid="@report.ArticleId" class="button">Редактировать статью</a></li>
-                            <li><a asp-area="admin" asp-controller="Home" asp-action="DeleteReport" asp-route-articleid="@report.ArticleId" asp-route-categoryid="@report.ReportCategoryId" asp-route-userid="@report.UserId" class="button">Удалить жалобу</a></li>
+                            <li><a asp-area="admin" asp-controller="Home" asp-action="EditArticle" asp-route-articleid="@report.ArticleId" class="button">@localizer["edit"]</a></li>
+                            <li><a asp-area="admin" asp-controller="Home" asp-action="DeleteReport" asp-route-articleid="@report.ArticleId" asp-route-categoryid="@report.ReportCategoryId" asp-route-userid="@report.UserId" class="button">@localizer["delReport"]</a></li>
                         </ul>
                     </td>
                 </tr>

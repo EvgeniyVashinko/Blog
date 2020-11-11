@@ -1,7 +1,8 @@
 ﻿@model Blog.Domain.Entities.Category
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
 
 @{
-    ViewData["Title"] = "EditArticleCategory";
+    ViewData["Title"] = localizer["title"];
 }
 
 <div class="row">
@@ -10,13 +11,13 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
+                <label class="control-label">@localizer["name"]</label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <br />
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="@localizer["save"]" class="btn btn-primary" />
             </div>
         </form>
     </div>

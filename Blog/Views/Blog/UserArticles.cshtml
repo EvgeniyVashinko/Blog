@@ -1,7 +1,8 @@
 ﻿@model IQueryable<Article>
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
 
 @{
-    ViewData["Title"] = "Мои статьи";
+    ViewData["Title"] = localizer["title"];
 }
 
 <!-- Section -->
@@ -33,7 +34,7 @@
                     </ul>
                     @*@Html.Raw(article.Text)*@
                     <ul class="actions">
-                        <li><a asp-area="" asp-controller="Blog" asp-action="Show" asp-route-id="@article.Id" class="button">Подробнее</a></li>
+                        <li><a asp-area="" asp-controller="Blog" asp-action="Show" asp-route-id="@article.Id" class="button">@localizer["more"]</a></li>
                     </ul>
                 </article>
             }

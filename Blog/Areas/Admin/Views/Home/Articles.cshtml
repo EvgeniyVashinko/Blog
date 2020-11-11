@@ -1,18 +1,20 @@
 ﻿@model IQueryable<Article>
 @inject Microsoft.AspNetCore.Identity.UserManager<User> userManager
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+
 @{
-    ViewData["Title"] = "Статьи";
+    ViewData["Title"] = localizer["title1"];
 }
 
-<h1>Статьи</h1>
+<h1>@localizer["title1"]</h1>
 
 <div class="table-wrapper">
     <table class="alt">
         <thead>
             <tr>
-                <th>Заглавие</th>
-                <th>Автор</th>
-                <th>Действия</th>
+                <th>@localizer["title"]</th>
+                <th>@localizer["author"]</th>
+                <th>@localizer["action"]</th>
             </tr>
         </thead>
         <tbody>
@@ -26,8 +28,8 @@
                     <td>@username</td>
                     <td>
                         <ul class="actions">
-                            <li><a asp-area="admin" asp-controller="Home" asp-action="EditArticle" asp-route-articleid="@article.Id" class="button">Редактировать</a></li>
-                            <li><a asp-area="admin" asp-controller="Home" asp-action="DeleteArticle" asp-route-articleid="@article.Id" class="button">Удалить</a></li>
+                            <li><a asp-area="admin" asp-controller="Home" asp-action="EditArticle" asp-route-articleid="@article.Id" class="button">@localizer["edit"]</a></li>
+                            <li><a asp-area="admin" asp-controller="Home" asp-action="DeleteArticle" asp-route-articleid="@article.Id" class="button">@localizer["del"]</a></li>
                         </ul>
                     </td>
                 </tr>

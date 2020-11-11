@@ -1,62 +1,76 @@
 ﻿@inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
 @inject Blog.Domain.DataManager dataManager
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+
 <div id="sidebar">
     <div class="inner">
 
         <!-- Search -->
-        <section id="search" class="alt">
-            <form method="post" action="#">
-                <input type="text" name="query" id="query" placeholder="Поиск" />
-            </form>
-            <date></date>
+        @*<section id="search" class="alt">
+                <form method="post" action="#">
+                    <input type="text" name="query" id="query" placeholder="Поиск" />
+                </form>
+                <date></date>
+            </section>*@
+        <section class="alt">
+            <div class="row">
+                <div class="col-4 col-12-medium aln-center">
+                    <h3>@localizer["lang"]</h3>
+                    <img src="~/images/countryFlags/24p/@localizer["flag"]" />
+                </div>
+                <div class="col-8 col-12-medium">
+                    <partial name="_Culture" />
+                </div>
+            </div>
         </section>
+
 
 
         <!-- Menu -->
         <nav id="menu">
             <header class="major">
-                <h2>Меню</h2>
+                <h2>@localizer["menu"]</h2>
             </header>
             <ul>
                 @if (!SignInManager.IsSignedIn(User))
                 {
-                    <li><a asp-area="" asp-controller="Account" asp-action="Login">Вход</a></li>
-                    <li><a asp-area="" asp-controller="Account" asp-action="Register">Регистрация</a></li>
+                    <li><a asp-area="" asp-controller="Account" asp-action="Login">@localizer["login"]</a></li>
+                    <li><a asp-area="" asp-controller="Account" asp-action="Register">@localizer["register"]</a></li>
                 }
-                <li><a href="/">Главная</a></li>
+                <li><a href="/">@localizer["mainpage"]</a></li>
                 <li>
-                    <span class="opener">Категории</span>
+                    <span class="opener">@localizer["category"]</span>
                     <vc:categories-list list="@dataManager.Categories.GetCategoriesStringList()" select="false" contr="Blog" actn="Category" id=""></vc:categories-list>
                 </li>
                 @if (SignInManager.IsSignedIn(User))
                 {
                     <li>
-                        <span class="opener">Профиль</span>
+                        <span class="opener">@localizer["profile"]</span>
                         <ul>
                             <vc:user-info></vc:user-info>
                         </ul>
                     </li>
 
                     <li>
-                        <span class="opener">Мой блог</span>
+                        <span class="opener">@localizer["myblog"]</span>
                         <ul>
-                            <li><a asp-area="" asp-controller="Blog" asp-action="UserArticles">Мои статьи</a></li>
-                            <li><a asp-area="" asp-controller="Blog" asp-action="Edit">Добавить</a></li>
-                            <li><a asp-area="" asp-controller="Blog" asp-action="EditArticles">Редактировать</a></li>
+                            <li><a asp-area="" asp-controller="Blog" asp-action="UserArticles">@localizer["myarticles"]</a></li>
+                            <li><a asp-area="" asp-controller="Blog" asp-action="Edit">@localizer["add"]</a></li>
+                            <li><a asp-area="" asp-controller="Blog" asp-action="EditArticles">@localizer["edit"]</a></li>
                         </ul>
                     </li>
                 }
-                <li><a asp-area="" asp-controller="Blog" asp-action="FreshArticles">Новое</a></li>
+                <li><a asp-area="" asp-controller="Blog" asp-action="FreshArticles">@localizer["freshpage"]</a></li>
 
-                <li><a asp-controller="Blog" asp-action="PopularArticles">Популярное</a></li>
+                <li><a asp-controller="Blog" asp-action="PopularArticles">@localizer["popular"]</a></li>
                 <li>
-                    <span class="opener">Статистика</span>
+                    <span class="opener">@localizer["stat"]</span>
                     <vc:info></vc:info>
                 </li>
                 @if (SignInManager.IsSignedIn(User))
                 {
-                    <li><a asp-area="" asp-controller="Account" asp-action="Logout">Выход</a></li>
+                    <li><a asp-area="" asp-controller="Account" asp-action="Logout">@localizer["logout"]</a></li>
                 }
             </ul>
         </nav>

@@ -1,7 +1,8 @@
 ﻿@model IQueryable<Article>
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
 
 @{
-    ViewData["Title"] = "Новое";
+    ViewData["Title"] = localizer["title"];
 }
 
 <!-- Section -->
@@ -12,9 +13,9 @@
             @foreach (Article article in Model)
             {
                 var path = "";
-                @if (article.ImagePath!= null)
+                @if (article.ImagePath != null)
                 {
-                     path = article.ImagePath;
+                    path = article.ImagePath;
                 }
                 else
                 {
@@ -24,14 +25,14 @@
                     <a asp-area="" asp-controller="Blog" asp-action="Show" asp-route-id="@article.Id" class="image"><img src="~/images/@path" alt="" height="310" /></a>
                     <h2>@article.Title</h2>
                     @*@Html.Raw(article.Text)*@
-                <ul class="actions">
-                    <li><a asp-area="" asp-controller="Blog" asp-action="Show" asp-route-id="@article.Id" class="button">Подробнее</a></li>
-                    <li><a asp-area="" asp-controller="Blog" asp-action="Edit" asp-route-id="@article.Id" class="button">Редактировать</a></li>
-                    <li><a asp-area="" asp-controller="Blog" asp-action="Delete" asp-route-id="@article.Id" class="button">Удалить</a></li>
-                </ul>
-                @*<form asp-area="" asp-controller="Blog" asp-action="Delete" method="post">
-                    <input type="submit" value="Удалить" />
-                </form>*@
+                    <ul class="actions">
+                        <li><a asp-area="" asp-controller="Blog" asp-action="Show" asp-route-id="@article.Id" class="button">@localizer["more"]</a></li>
+                        <li><a asp-area="" asp-controller="Blog" asp-action="Edit" asp-route-id="@article.Id" class="button">@localizer["edit"]</a></li>
+                        <li><a asp-area="" asp-controller="Blog" asp-action="Delete" asp-route-id="@article.Id" class="button">@localizer["del"]</a></li>
+                    </ul>
+                    @*<form asp-area="" asp-controller="Blog" asp-action="Delete" method="post">
+                            <input type="submit" value="Удалить" />
+                        </form>*@
                 </article>
             }
         }
