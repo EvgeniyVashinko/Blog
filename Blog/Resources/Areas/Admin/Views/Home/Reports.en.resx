@@ -123,11 +123,17 @@
   <data name="article" xml:space="preserve">
     <value>Article</value>
   </data>
+  <data name="del" xml:space="preserve">
+    <value>Delete article</value>
+  </data>
   <data name="delReport" xml:space="preserve">
     <value>Delete report</value>
   </data>
   <data name="edit" xml:space="preserve">
     <value>Edit article</value>
+  </data>
+  <data name="langcode" xml:space="preserve">
+    <value>en</value>
   </data>
   <data name="reason" xml:space="preserve">
     <value>Reason</value>

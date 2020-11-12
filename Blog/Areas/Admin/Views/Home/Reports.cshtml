@@ -20,12 +20,13 @@
             @foreach (var report in Model)
             {
                 <tr>
-                    <td>@report.ReportCategory.Name</td>
+                    <td>@report.ReportCategory.GetLocalizedName(localizer["langcode"].Value)</td>
                     <td>@report.Article.Title</td>
                     <td>
                         <ul class="actions">
                             <li><a asp-area="admin" asp-controller="Home" asp-action="EditArticle" asp-route-articleid="@report.ArticleId" class="button">@localizer["edit"]</a></li>
                             <li><a asp-area="admin" asp-controller="Home" asp-action="DeleteReport" asp-route-articleid="@report.ArticleId" asp-route-categoryid="@report.ReportCategoryId" asp-route-userid="@report.UserId" class="button">@localizer["delReport"]</a></li>
+                            <li><a asp-area="admin" asp-controller="Home" asp-action="DeleteArticle" asp-route-articleid="@report.ArticleId" class="button">@localizer["del"]</a></li>
                         </ul>
                     </td>
                 </tr>

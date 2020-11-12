@@ -123,11 +123,17 @@
   <data name="article" xml:space="preserve">
     <value>Артыкул</value>
   </data>
+  <data name="del" xml:space="preserve">
+    <value>Выдаліць артыкул</value>
+  </data>
   <data name="delReport" xml:space="preserve">
     <value>Выдаліць скаргу</value>
   </data>
   <data name="edit" xml:space="preserve">
     <value>Рэдагаваць артыкул</value>
+  </data>
+  <data name="langcode" xml:space="preserve">
+    <value>be</value>
   </data>
   <data name="reason" xml:space="preserve">
     <value>Прычына</value>
