@@ -1,4 +1,5 @@
 ﻿@model User
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
 
-<li><a>Имя: @Model.UserName</a></li>
-<li><a>Email: @Model.Email</a></li>
+<li><a>@localizer["name"].: @Model.UserName</a></li>
+<li><a>@localizer["email"]: @Model.Email</a></li>

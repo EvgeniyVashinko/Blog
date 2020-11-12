@@ -1,7 +1,8 @@
 ﻿@model Blog.Models.ViewComponents.Information
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
 
 <ul>
-    <li><a>Количество пользователей: @Model.UsersCount</a></li>
-    <li><a>Количество статей: @Model.ArticlesCount</a></li>
-    <li><a>Количество комментариев: @Model.CommentsCount</a></li>
+    <li><a>@localizer["unum"]: @Model.UsersCount</a></li>
+    <li><a>@localizer["anum"]: @Model.ArticlesCount</a></li>
+    <li><a>@localizer["cnum"]: @Model.CommentsCount</a></li>
 </ul>
