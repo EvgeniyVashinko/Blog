@@ -22,6 +22,10 @@ namespace Blog.Domain.Repositories.EntityFramework
             context.Articles.Include(a => a.ArticleLikes).ToList();
             return context.Articles.FirstOrDefault(x => x.Id == id);
         }
+        public Article GetArticle_(Guid id)
+        {
+            return context.Articles.FirstOrDefault(x => x.Id == id);
+        }
         public IQueryable<Article> GetArticlesByUser(User user)
         {
             context.Articles.Include(a => a.ArticleLikes).ToList();
@@ -36,6 +40,10 @@ namespace Blog.Domain.Repositories.EntityFramework
         public IQueryable<Article> GetArticles()
         {
             context.Articles.Include(a => a.ArticleLikes).ToList();
+            return context.Articles;
+        }
+        public IQueryable<Article> GetArticles_()
+        {
             return context.Articles;
         }
 
@@ -66,7 +74,6 @@ namespace Blog.Domain.Repositories.EntityFramework
         }
         public void DeleteLike(User user, Article article)
         {
-            //context.ArticleLikes.Remove(new ArticleLike { User = user, Article = article });
             article.ArticleLikes.Remove(article.ArticleLikes.First(al => al.ArticleId == article.Id && al.UserId == user.Id));
             context.SaveChanges();
         }

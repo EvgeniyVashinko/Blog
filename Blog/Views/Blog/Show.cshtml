@@ -24,11 +24,11 @@
         <div class="col-9 col-12-medium">
             <ul class="icons">
                 <li>
-                    <strong>@Model.ArticleLikes.Count()</strong>
+                    <strong id="likeNum">@Model.ArticleLikes.Count()</strong>
                 </li>
                 <li>
                     @*<a asp-controller="Blog" asp-action="ArticleLike" asp-route-id="@Model.Id" class="icon fa fa-thumbs-up" aria-hidden="true"></a>*@
-                    <button id="likeButton"><i class="icon fa fa-thumbs-up" aria-hidden="true"></i></button>
+                    <i id="likeButton"><i class="icon fa fa-thumbs-up" aria-hidden="true"></i></i>
                 </li>
             </ul>
         </div>
@@ -44,17 +44,6 @@
         </div>
     </div>
 
-
-    @*<form asp-controller="Blog" asp-action="CreateComment">
-            <input type="hidden" asp-for="Id" />
-            <div>
-                <textarea placeholder="Введите текст комментария" rows="6" name="tarea"></textarea>
-            </div>
-            <br />
-            <div>
-                <input type="submit" value="Отправить" class="primary" />
-            </div>
-        </form>*@
 
     @if (SignInManager.IsSignedIn(User))
     {
@@ -88,4 +77,37 @@
     <script src="~/js/signalr/dist/browser/signalr.min.js"></script>
     <script src="~/js/sendComments.js"></script>
 </section>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script type="text/javascript">
+    $.ajax({
+        type: 'GET',
+        url: '@Url.Action("GetArticle", "Blog")',
+        accept: 'application/json',
+        data: {
+            id : '@Model.Id',
+        },
+        success: function (data) {
+            console.log(data);
+            let likeButton = document.getElementById("likeButton");
+            likeButton.onclick = (e) => {
+                $.ajax({
+                    type: 'GET',
+                    url: '@Url.Action("LikeNumber", "Blog")',
+                    accept: 'application/json',
+                    data: {
+                        id : data.id,
+                    },
+                    success: function (data) {
+                        console.log(data)
+                        let likeNumber = document.getElementById("likeNum");
+                        likeNumber.innerHTML = data.num;
+                    }
+                });
+            }
+            
+        }
+
+    });
+</script>
 

@@ -26,10 +26,10 @@
                     <h2>@article.Title</h2>
                     <ul class="icons">
                         <li>
-                            <strong> @article.ArticleLikes.Count()  </strong>
+                            <strong id="@("likeNum" + article.Id)"> @article.ArticleLikes.Count()  </strong>
                         </li>
                         <li>
-                            <a asp-controller="Blog" asp-action="ArticleLike" asp-route-id="@article.Id" asp-route-cntrl="Home" asp-route-actn="Index" class="icon fa fa-thumbs-up" aria-hidden="true"></a>
+                            <i id="@("like" + @article.Id)" class="icon fa fa-thumbs-up" aria-hidden="true"></i>
                         </li>
                     </ul>
                     @*@Html.Raw(article.Text)*@
@@ -41,3 +41,42 @@
         }
     </div>
 </section>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script type="text/javascript">
+    $.ajax({
+        type: 'GET',
+        url: '@Url.Action("GetArticles", "Blog")',
+        accept: 'application/json',
+        data: {
+            
+        },
+        success: function (data) {
+            for (let i of data) {
+                let likeButton = document.getElementById("like" + i.id);
+                likeButton.onclick = (e) => {
+                    $.ajax({
+                        type: 'GET',
+                        url: '@Url.Action("LikeNumber", "Blog")',
+                        accept: 'application/json',
+                        data: {
+                            id : i.id,
+                        },
+                        success: function (data) {
+                            console.log(data)
+                            let likeNumber = document.getElementById("likeNum" + i.id);
+                            likeNumber.innerHTML = data.num;
+                            //if (data.isSet) {
+                            //    likeButton.classList.remove("likeUnSet");
+                            //}
+                            //else {
+                            //    likeButton.classList.add("likeUnSet")
+                            //}
+                        }
+                    });
+                }
+            }
+        }
+
+    });
+</script>

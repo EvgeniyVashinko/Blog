@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Blog.Domain;
 using Blog.Domain.Entities;
+using Blog.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -98,8 +99,6 @@ namespace Blog.Controllers
                            where article.PublishDate >= DateTime.Now.AddDays(-7)
                            orderby article.PublishDate descending
                            select article;
-            ViewBag.cntrl = "Blog";
-            ViewBag.actn = "FreshArticles";
             return View(articles);
         }
 
@@ -110,8 +109,6 @@ namespace Blog.Controllers
             var articles = from article in dataManager.Articles.GetArticles()
                            orderby article.ArticleLikes.Count() descending
                            select article;
-            ViewBag.cntrl = "Blog";
-            ViewBag.actn = "PopularArticles";
             return View("FreshArticles", articles);
         }
         [AllowAnonymous]
@@ -145,11 +142,35 @@ namespace Blog.Controllers
             ViewBag.LikeAmount = dataManager.Articles.LikeAmount(comment.Article);
             return View("Show", dataManager.Articles.GetArticle(id));
         }
-        public async Task<IActionResult> ArticleLike(Guid id, string cntrl = null, string actn = null, string name = null)
+
+
+        [AllowAnonymous]
+        public IActionResult Category(string name)
+        {
+            var cat = dataManager.Categories.GetCategory(name);
+            var articles = dataManager.Categories.GetArticlesByCategory(cat);
+            ViewBag.name = name;
+            return View("FreshArticles", articles);
+        }
+
+        public IQueryable<Article> GetArticles()
+        {
+            var articles = dataManager.Articles.GetArticles_();
+            return articles;
+        }
+
+        public Article GetArticle(Guid id)
+        {
+            var article = dataManager.Articles.GetArticle_(id);
+            return article;
+        }
+
+        public async Task<LikeInfo> LikeNumber(Guid id)
         {
             var user = await userManager.GetUserAsync(HttpContext.User);
             var article = dataManager.Articles.GetArticle(id);
-            if (!dataManager.Articles.IsLike(user,article))
+
+            if (!dataManager.Articles.IsLike(user, article))
             {
                 dataManager.Articles.AddLike(user, article);
             }
@@ -158,25 +179,13 @@ namespace Blog.Controllers
                 dataManager.Articles.DeleteLike(user, article);
             }
 
-            var comments = dataManager.Comments.GetCommentsByArticle(article);
-
-            ViewBag.Comments = comments;
-            ViewBag.LikeAmount = dataManager.Articles.LikeAmount(article);
-            if (actn == null)
+            LikeInfo li = new LikeInfo() 
             {
-                return View("Show", article);
-            }
-            return RedirectToAction(actn,cntrl,new { name = name});
-        }
-        [AllowAnonymous]
-        public IActionResult Category(string name)
-        {
-            var cat = dataManager.Categories.GetCategory(name);
-            var articles = dataManager.Categories.GetArticlesByCategory(cat);
-            ViewBag.cntrl = "Blog";
-            ViewBag.actn = "Category";
-            ViewBag.name = name;
-            return View("FreshArticles", articles);
+                Num = dataManager.Articles.LikeAmount(article),
+                IsSet = dataManager.Articles.IsLike(user, article)
+            };
+
+            return li;
         }
     }
 }
