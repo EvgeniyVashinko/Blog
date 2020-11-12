@@ -123,6 +123,9 @@
   <data name="complain" xml:space="preserve">
     <value>Complain</value>
   </data>
+  <data name="langcode" xml:space="preserve">
+    <value>en</value>
+  </data>
   <data name="send" xml:space="preserve">
     <value>Send</value>
   </data>

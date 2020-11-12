@@ -14,5 +14,6 @@ namespace Blog.Domain.Repositories.Abstract
         void DeleteReportCategory(Guid id);
         void SaveReportCategory(ReportCategory category);
         IEnumerable<string> GetReportCategoriesStringList();
+        IEnumerable<string> GetReportCategoriesStringList(string currentCulture);
     }
 }

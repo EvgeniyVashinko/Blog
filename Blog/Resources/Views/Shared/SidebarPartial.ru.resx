@@ -144,6 +144,9 @@
   <data name="lang" xml:space="preserve">
     <value>Язык</value>
   </data>
+  <data name="langcode" xml:space="preserve">
+    <value>ru</value>
+  </data>
   <data name="login" xml:space="preserve">
     <value>Вход</value>
   </data>

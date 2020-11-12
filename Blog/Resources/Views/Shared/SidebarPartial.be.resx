@@ -144,6 +144,9 @@
   <data name="lang" xml:space="preserve">
     <value>Мова</value>
   </data>
+  <data name="langcode" xml:space="preserve">
+    <value>be</value>
+  </data>
   <data name="login" xml:space="preserve">
     <value>увайсці</value>
   </data>

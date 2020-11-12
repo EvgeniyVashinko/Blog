@@ -123,6 +123,9 @@
   <data name="complain" xml:space="preserve">
     <value>Пожаловаться</value>
   </data>
+  <data name="langcode" xml:space="preserve">
+    <value>ru</value>
+  </data>
   <data name="send" xml:space="preserve">
     <value>Отправить</value>
   </data>

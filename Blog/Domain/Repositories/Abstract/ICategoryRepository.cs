@@ -16,5 +16,6 @@ namespace Blog.Domain.Repositories.Abstract
         IQueryable<Article> GetArticlesByCategory(Category category);
         IQueryable<Article> GetArticlesByCategory(Guid categoryId);
         IEnumerable<string> GetCategoriesStringList();
+        IEnumerable<string> GetCategoriesStringList(string currentCulture);
     }
 }

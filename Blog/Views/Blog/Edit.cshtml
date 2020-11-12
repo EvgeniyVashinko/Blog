@@ -32,7 +32,7 @@
                 </div>
                 <div>
                     <label>@localizer["categ"]</label>
-                    <vc:categories-list list="@dataManager.Categories.GetCategoriesStringList()" select="true" contr="" actn="" id=""></vc:categories-list>
+                    <vc:categories-list list="@dataManager.Categories.GetCategoriesStringList(localizer["langcode"].Value)" select="true" contr="" actn="" id=""></vc:categories-list>
                 </div>
                 <div>
                     <label>@localizer["text"]</label>

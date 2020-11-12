@@ -129,6 +129,9 @@
   <data name="imgpath" xml:space="preserve">
     <value>Путь к изображению</value>
   </data>
+  <data name="langcode" xml:space="preserve">
+    <value>ru</value>
+  </data>
   <data name="name" xml:space="preserve">
     <value>Статья</value>
   </data>

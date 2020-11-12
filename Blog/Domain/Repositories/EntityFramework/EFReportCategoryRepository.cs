@@ -37,6 +37,35 @@ namespace Blog.Domain.Repositories.EntityFramework
             return list;
         }
 
+        public IEnumerable<string> GetReportCategoriesStringList(string currentCulture)
+        {
+            List<string> list = new List<string>();
+
+            if (currentCulture == "ru")
+            {
+                foreach (var cat in GetReportCategories())
+                {
+                    list.Add(cat.Name);
+                }
+            }
+            else if (currentCulture == "be")
+            {
+                foreach (var cat in GetReportCategories())
+                {
+                    list.Add(cat.BeName);
+                }
+            }
+            else if (currentCulture == "en")
+            {
+                foreach (var cat in GetReportCategories())
+                {
+                    list.Add(cat.EnName);
+                }
+            }
+
+            return list;
+        }
+
         public ReportCategory GetReportCategory(Guid id)
         {
             return context.ReportCategories.FirstOrDefault(c => c.Id == id);
@@ -44,7 +73,8 @@ namespace Blog.Domain.Repositories.EntityFramework
 
         public ReportCategory GetReportCategory(string categoryName)
         {
-            return context.ReportCategories.FirstOrDefault(c => c.Name == categoryName);
+            return context.ReportCategories.FirstOrDefault(c => c.Name == categoryName || c.EnName == categoryName ||
+            c.BeName == categoryName);
         }
 
         public void SaveReportCategory(ReportCategory category)

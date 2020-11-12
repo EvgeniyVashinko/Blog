@@ -11,9 +11,19 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label class="control-label">@localizer["name"]</label>
+                <label class="control-label">@localizer["nameRu"]</label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">@localizer["nameBe"]</label>
+                <input asp-for="BeName" class="form-control" />
+                <span asp-validation-for="BeName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">@localizer["nameEn"]</label>
+                <input asp-for="EnName" class="form-control" />
+                <span asp-validation-for="EnName" class="text-danger"></span>
             </div>
             <br />
             <div class="form-group">

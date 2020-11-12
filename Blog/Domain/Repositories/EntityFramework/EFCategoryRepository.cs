@@ -51,6 +51,34 @@ namespace Blog.Domain.Repositories.EntityFramework
             return list;
         }
 
+        public IEnumerable<string> GetCategoriesStringList(string currentCulture)
+        {
+            List<string> list = new List<string>();
+
+            if (currentCulture == "ru")
+            {
+                foreach (var cat in GetCategories())
+                {
+                    list.Add(cat.Name);
+                }
+            }
+            else if (currentCulture == "be")
+            {
+                foreach (var cat in GetCategories())
+                {
+                    list.Add(cat.BeName);
+                }
+            }
+            else if (currentCulture == "en")
+            {
+                foreach (var cat in GetCategories())
+                {
+                    list.Add(cat.EnName);
+                }
+            }
+            return list;
+        }
+
         public Category GetCategory(Guid id)
         {
             return context.Categories.FirstOrDefault(c => c.Id == id);
@@ -58,7 +86,7 @@ namespace Blog.Domain.Repositories.EntityFramework
 
         public Category GetCategory(string categoryName)
         {
-            return context.Categories.FirstOrDefault(c => c.Name == categoryName);
+            return context.Categories.FirstOrDefault(c => c.Name == categoryName || c.BeName == categoryName || c.EnName == categoryName);
         }
 
         public void SaveCategory(Category category)

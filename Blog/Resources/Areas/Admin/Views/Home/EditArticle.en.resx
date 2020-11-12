@@ -129,6 +129,9 @@
   <data name="imgpath" xml:space="preserve">
     <value>Image path</value>
   </data>
+  <data name="langcode" xml:space="preserve">
+    <value>en</value>
+  </data>
   <data name="name" xml:space="preserve">
     <value>Edit</value>
   </data>

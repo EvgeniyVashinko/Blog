@@ -41,7 +41,7 @@
                 <li><a href="/">@localizer["mainpage"]</a></li>
                 <li>
                     <span class="opener">@localizer["category"]</span>
-                    <vc:categories-list list="@dataManager.Categories.GetCategoriesStringList()" select="false" contr="Blog" actn="Category" id=""></vc:categories-list>
+                    <vc:categories-list list="@dataManager.Categories.GetCategoriesStringList(localizer["langcode"].Value)" select="false" contr="Blog" actn="Category" id=""></vc:categories-list>
                 </li>
                 @if (SignInManager.IsSignedIn(User))
                 {

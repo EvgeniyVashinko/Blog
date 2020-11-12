@@ -37,7 +37,7 @@
                 <ul>
                     <li>
                         <span class="opener">@localizer["complain"]</span>
-                        <vc:categories-list list="@dataManager.ReportCategories.GetReportCategoriesStringList()" select="false" contr="Article" actn="Report" id="@Model.Id"></vc:categories-list>
+                        <vc:categories-list list="@dataManager.ReportCategories.GetReportCategoriesStringList(localizer["langcode"].Value)" select="false" contr="Article" actn="Report" id="@Model.Id"></vc:categories-list>
                     </li>
                 </ul>
             </nav>

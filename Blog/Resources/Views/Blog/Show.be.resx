@@ -123,6 +123,9 @@
   <data name="complain" xml:space="preserve">
     <value>Паскардзіцца</value>
   </data>
+  <data name="langcode" xml:space="preserve">
+    <value>be</value>
+  </data>
   <data name="send" xml:space="preserve">
     <value>Адправіць</value>
   </data>

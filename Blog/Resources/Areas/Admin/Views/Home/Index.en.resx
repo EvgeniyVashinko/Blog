@@ -123,11 +123,11 @@
   <data name="articles" xml:space="preserve">
     <value>Articles</value>
   </data>
-  <data name="report" xml:space="preserve">
-    <value>Reports</value>
-  </data>
   <data name="reportCat" xml:space="preserve">
     <value>Report categories</value>
+  </data>
+  <data name="reports" xml:space="preserve">
+    <value>Reports</value>
   </data>
   <data name="title" xml:space="preserve">
     <value>Admin</value>
