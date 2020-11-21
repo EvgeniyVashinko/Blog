@@ -43,6 +43,7 @@ namespace Blog
             services.AddTransient<IReportCategoryRepository, EFReportCategoryRepository>();
             services.AddTransient<IReportRepository, EFReportRepository>();
             services.AddTransient<DataManager>();
+            services.AddTransient<Email>();
 
             services.AddDbContext<AppDbContext>(x => x.UseSqlServer(Config.ConnectionString));
 

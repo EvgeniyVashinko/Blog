@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Blog.Domain.Entities;
 using Blog.Models;
+using Blog.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -15,11 +16,13 @@ namespace Blog.Controllers
     {
         private readonly UserManager<User> userManager;
         private readonly SignInManager<User> signInManager;
+        private readonly Email email;
 
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager)
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, Email email)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
+            this.email = email;
         }
 
         [AllowAnonymous]
@@ -74,6 +77,7 @@ namespace Blog.Controllers
                 var result = await userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    email.SendEmail(user.Email, user.UserName);
                     return Redirect("/account/login/");
                 }
             }

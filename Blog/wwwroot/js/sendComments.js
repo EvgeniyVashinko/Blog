@@ -23,11 +23,11 @@ function AddToGroup() {
 }
 
 function SendComment(event) {
-    var postId = document.getElementById("articleId").value;
+    var articleId = document.getElementById("articleId").value;
     var content = document.getElementById("content").value;
     if (document.getElementById("content").value != "") {
         document.getElementById("content").value = "";
-        connection.invoke("SendComment", postId, content)
+        connection.invoke("SendComment", articleId, content)
         event.preventDefault();
     }
 
