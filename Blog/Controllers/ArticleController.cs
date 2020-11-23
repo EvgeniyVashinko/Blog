@@ -23,9 +23,9 @@ namespace Blog.Controllers
             this.webHostEnvironment = webHostEnvironment;
             this.userManager = userManager;
         }
-        public async Task<IActionResult> Report(string name, Guid id)
+        public async Task<IActionResult> Report(string category, Guid id)
         {
-            var cat = dataManager.ReportCategories.GetReportCategory(name);
+            var cat = dataManager.ReportCategories.GetReportCategory(category);
             var user = await userManager.GetUserAsync(HttpContext.User);
             var article = dataManager.Articles.GetArticle(id);
 

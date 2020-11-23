@@ -20,29 +20,32 @@
 
     @Html.Raw(Model.Text)
 
-    <div class="row">
-        <div class="col-9 col-12-medium">
-            <ul class="icons">
-                <li>
-                    <strong id="likeNum">@Model.ArticleLikes.Count()</strong>
-                </li>
-                <li>
-                    @*<a asp-controller="Blog" asp-action="ArticleLike" asp-route-id="@Model.Id" class="icon fa fa-thumbs-up" aria-hidden="true"></a>*@
-                    <i id="likeButton"><i class="icon fa fa-thumbs-up" aria-hidden="true"></i></i>
-                </li>
-            </ul>
-        </div>
-        <div class="col-3 col-12-medium inner">
-            <nav id="menu">
-                <ul>
-                    <li>
-                        <span class="opener">@localizer["complain"]</span>
-                        <vc:categories-list list="@dataManager.ReportCategories.GetReportCategoriesStringList(localizer["langcode"].Value)" select="false" contr="Article" actn="Report" id="@Model.Id"></vc:categories-list>
-                    </li>
-                </ul>
-            </nav>
-        </div>
+<div class="row">
+    <div class="col-7 col-12-medium">
+        <ul class="icons">
+            <li>
+                <strong id="likeNum">@Model.ArticleLikes.Count()</strong>
+            </li>
+            <li>
+                <i id="likeButton"><i class="icon fa fa-thumbs-up" aria-hidden="true"></i></i>
+            </li>
+        </ul>
     </div>
+    <div class="col-5 col-12-medium inner">
+        <form asp-controller="Article" asp-action="Report" method="get">
+            <div class="row">
+                <input type="hidden" asp-for="@Model.Id" class="form-control" id="id" />
+                <div class="col-6 col-12-xsmall">
+                    <vc:categories-list list="@dataManager.ReportCategories.GetReportCategoriesStringList(localizer["langcode"].Value)" select="true" contr="Article" actn="Report" id="@Model.Id"></vc:categories-list>
+                </div>
+                <div class="col-4 col-12-xsmall">
+                    <input class="btn btn-primary" type="submit" value="@localizer["complain"]" />
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
 
 
     @if (SignInManager.IsSignedIn(User))
