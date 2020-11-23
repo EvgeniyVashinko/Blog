@@ -108,6 +108,13 @@ namespace Blog
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseExceptionHandler("/Error/Exeption");
+                //app.UseHsts();
+            }
+
+            app.UseStatusCodePagesWithReExecute("/Error/Error", "?code={0}");
             // Подключаем поддержку static files
 
             app.UseStaticFiles();
