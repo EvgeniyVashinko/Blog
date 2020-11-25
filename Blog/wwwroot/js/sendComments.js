@@ -12,6 +12,7 @@ function AddComment(userName, content, postedDate) {
         '<div class="box">' +
         '<a href=""><h4>' + userName + '</h4 ></a > ' +
         '<p>' + content + '</p >' +
+        '<p>' + postedDate + '</p >' +
         '</div >'
     )
 }

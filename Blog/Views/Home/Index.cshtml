@@ -53,25 +53,20 @@
         },
         success: function (data) {
             for (let i of data) {
-                let likeButton = document.getElementById("like" + i.id);
+                let likeButton = document.getElementById("like" + i);
                 likeButton.onclick = (e) => {
                     $.ajax({
                         type: 'GET',
                         url: '@Url.Action("LikeNumber", "Blog")',
                         accept: 'application/json',
                         data: {
-                            id : i.id,
+                            id : i,
                         },
                         success: function (data) {
                             console.log(data)
-                            let likeNumber = document.getElementById("likeNum" + i.id);
+                            let likeNumber = document.getElementById("likeNum" + i);
                             likeNumber.innerHTML = data.num;
-                            //if (data.isSet) {
-                            //    likeButton.classList.remove("likeUnSet");
-                            //}
-                            //else {
-                            //    likeButton.classList.add("likeUnSet")
-                            //}
+
                         }
                     });
                 }

@@ -43,7 +43,7 @@ namespace Blog.Hubs
 
             commentRepository.SaveComment(comment);
 
-            await Clients.Group(articleId).SendAsync("Send", user.UserName, comment.Text, comment.PublishDate);
+            await Clients.Group(articleId).SendAsync("Send", user.UserName, comment.Text, comment.PublishDate.ToString("HH:mm:ss dd.MM.yyyy"));
         }
     }
 }

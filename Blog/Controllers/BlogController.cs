@@ -52,13 +52,13 @@ namespace Blog.Controllers
                 if (imgFile != null)
                 {
                     model.ImagePath = imgFile.FileName;
-                    using(var stream = new FileStream(Path.Combine(webHostEnvironment.WebRootPath, "images/", imgFile.FileName), FileMode.Create))
+                    using(var stream = new FileStream(Path.Combine(webHostEnvironment.WebRootPath, Config.ImageFolderPath, imgFile.FileName), FileMode.Create))
                     {
                         imgFile.CopyTo(stream);
                     }
                 }
                 dataManager.Articles.SaveArticle(model);
-                return RedirectToAction(nameof(BlogController.EditArticles), nameof(BlogController).Replace("Controller", ""));
+                return RedirectToAction(nameof(BlogController.EditArticles));
             }
             return View(model);
         }
@@ -78,7 +78,7 @@ namespace Blog.Controllers
         public IActionResult Delete(Guid id)
         {
             dataManager.Articles.DeleteArticle(id);
-            return RedirectToAction(nameof(BlogController.EditArticles), nameof(BlogController).Replace("Controller", ""));
+            return RedirectToAction(nameof(BlogController.EditArticles));
         }
 
         public async Task<IActionResult> UserArticles()
@@ -153,15 +153,16 @@ namespace Blog.Controllers
             return View("FreshArticles", articles);
         }
 
-        public IQueryable<Article> GetArticles()
+        public List<Guid> GetArticles()
         {
-            var articles = dataManager.Articles.GetArticles_();
+            var articles = dataManager.Articles.GetArticleIds();
             return articles;
         }
 
         public Article GetArticle(Guid id)
         {
-            var article = dataManager.Articles.GetArticle_(id);
+            var article = dataManager.Articles.GetArticle(id);
+            article.ArticleLikes = null;
             return article;
         }
 

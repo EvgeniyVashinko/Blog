@@ -23,8 +23,7 @@ namespace Blog.Domain.Repositories.EntityFramework
 
         public IQueryable<Article> GetArticlesByCategory(Category category)
         {
-            //context.Articles.Include(a => a.ArticleLikes).ToList();
-            var articles = context.Articles.Where(c => c.Category.Equals(category));
+            var articles = context.Articles.Where(c => c.Category.Id == category.Id);
             articles.Include(a => a.ArticleLikes).ToList();
             return articles;
         }

@@ -8,6 +8,8 @@ namespace Blog.Service
     public class Config
     {
         public static string ConnectionString { get; set; }
-
+        public static string ImageFolderPath { get; set; }
+        public static string Email { get; set; }
+        public static string Password { get; set; }
     }
 }

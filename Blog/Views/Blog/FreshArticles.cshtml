@@ -53,7 +53,7 @@
         success: function (data) {
             for (let i of data) {
                 console.log(i);
-                let likeButton = document.getElementById("like" + i.id);
+                let likeButton = document.getElementById("like" + i);
                 if (likeButton != null) {
                     likeButton.onclick = (e) => {
                     $.ajax({
@@ -61,11 +61,11 @@
                         url: '@Url.Action("LikeNumber", "Blog")',
                         accept: 'application/json',
                         data: {
-                            id : i.id,
+                            id : i,
                         },
                         success: function (data) {
                             console.log(data)
-                            let likeNumber = document.getElementById("likeNum" + i.id);
+                            let likeNumber = document.getElementById("likeNum" + i);
                             likeNumber.innerHTML = data.num;
                         }
                     });

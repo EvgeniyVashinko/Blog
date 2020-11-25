@@ -10,14 +10,8 @@ namespace Blog.Models.ViewComponents
 {
     public class CategoriesList : ViewComponent
     {
-        //private readonly DataManager dataManager;
-        //public CategoriesList(DataManager dataManager)
-        //{
-        //    this.dataManager = dataManager;
-        //}
         public IViewComponentResult Invoke(IEnumerable<string> list=null, bool select = false, string contr = "", string actn = "", string id="")
         {
-            //var list = dataManager.Categories.GetCategoriesStringList();
             ViewBag.contr = contr;
             ViewBag.actn = actn;
             ViewBag.aid = id;

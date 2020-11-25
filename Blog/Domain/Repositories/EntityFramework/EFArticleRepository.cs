@@ -22,14 +22,10 @@ namespace Blog.Domain.Repositories.EntityFramework
             context.Articles.Include(a => a.ArticleLikes).ToList();
             return context.Articles.FirstOrDefault(x => x.Id == id);
         }
-        public Article GetArticle_(Guid id)
-        {
-            return context.Articles.FirstOrDefault(x => x.Id == id);
-        }
         public IQueryable<Article> GetArticlesByUser(User user)
         {
             context.Articles.Include(a => a.ArticleLikes).ToList();
-            return context.Articles.Where(x => x.User.Equals(user));
+            return context.Articles.Where(x => x.User.Id == user.Id);
         }
         public IQueryable<Article> GetArticlesByUser(string id)
         {
@@ -42,9 +38,14 @@ namespace Blog.Domain.Repositories.EntityFramework
             context.Articles.Include(a => a.ArticleLikes).ToList();
             return context.Articles;
         }
-        public IQueryable<Article> GetArticles_()
+        public List<Guid> GetArticleIds()
         {
-            return context.Articles;
+            List<Guid> guids = new List<Guid>();
+            foreach (var item in context.Articles)
+            {
+                guids.Add(item.Id);
+            }
+            return guids;
         }
 
         public void SaveArticle(Article article)

@@ -9,11 +9,11 @@ namespace Blog.Models.TagHelpers
 {
     public class DateTagHelper : TagHelper
     {
+        public DateTime date { get; set; }
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
-            output.TagName = "ul";
-            DateTime date = DateTime.Now;
-            var res = $"{date.ToString("dd.MM.yyyy")}, {date.DayOfWeek}";
+            output.TagName = "p";
+            var res = $"{date.ToString("HH:mm:ss dd.MM.yyyy")}";
             output.Content.SetHtmlContent(res);
         }
     }

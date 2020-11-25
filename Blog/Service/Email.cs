@@ -23,7 +23,7 @@ namespace Blog.Service
 
             using (System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient("smtp.gmail.com"))
             {
-                client.Credentials = new NetworkCredential("newsapp.app@gmail.com", "NewsApp1211");
+                client.Credentials = new NetworkCredential(Config.Email, Config.Password);
                 client.Port = 587;
                 client.EnableSsl = true;
 

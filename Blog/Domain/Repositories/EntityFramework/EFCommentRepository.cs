@@ -22,13 +22,13 @@ namespace Blog.Domain.Repositories.EntityFramework
             context.SaveChanges();
         }
 
-        public IQueryable<Comment> GetCommentsByAuthor(User user)
+        public IQueryable<Comment> GetCommentsByAuthor(User user) 
         {
-            return context.Comments.Where(x => x.User.Equals(user));
+            return context.Comments.Where(x => x.User.Id == user.Id);
         }
         public IQueryable<Comment> GetCommentsByArticle(Article article)
         {
-            return context.Comments.Where(x => x.Article.Equals(article));
+            return context.Comments.Where(x => x.Article.Id == article.Id);
         }
 
         public Comment GetComment(Guid id)
