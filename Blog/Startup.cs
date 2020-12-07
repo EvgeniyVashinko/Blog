@@ -113,7 +113,7 @@ namespace Blog
             services.AddSignalR(hubOptions =>
             {
                 hubOptions.EnableDetailedErrors = true;
-                hubOptions.KeepAliveInterval = TimeSpan.FromMinutes(1);
+                //hubOptions.KeepAliveInterval = TimeSpan.FromMinutes(1);
             });
         }
 
@@ -127,7 +127,8 @@ namespace Blog
             else
             {
                 app.UseExceptionHandler("/Error/Exeption");
-                //app.UseHsts();
+                //app.UseDeveloperExceptionPage();
+                app.UseHsts();
             }
 
             app.UseStatusCodePagesWithReExecute("/Error/Error", "?code={0}");

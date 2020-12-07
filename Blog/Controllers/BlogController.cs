@@ -117,7 +117,7 @@ namespace Blog.Controllers
         {
             var article = dataManager.Articles.GetArticle(id);
 
-            var comments = dataManager.Comments.GetCommentsByArticle(dataManager.Articles.GetArticle(id));
+            var comments = dataManager.Comments.GetCommentsByArticle(dataManager.Articles.GetArticle(id)).ToList();
             ViewBag.Comments = comments;
             ViewBag.LikeAmount = dataManager.Articles.LikeAmount(article);
             return View(article);

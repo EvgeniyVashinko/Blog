@@ -35,24 +35,24 @@ namespace Blog.Areas.Admin.Controllers
 
         public IActionResult Users()
         {
-            return View(userManager.Users);
+            return View(userManager.Users.ToList());
         }
         public IActionResult Articles(string id)
         {
-            IQueryable<Article> articles;
+            List<Article> articles;
             if (id == null)
             {
-                articles = dataManager.Articles.GetArticles();
+                articles = dataManager.Articles.GetArticles().ToList();
             }
             else
             {
-                articles = dataManager.Articles.GetArticlesByUser(id);
+                articles = dataManager.Articles.GetArticlesByUser(id).ToList();
             }
             return View(articles);
         }
         public IActionResult Reports()
         {
-            return View(dataManager.Reports.GetReports());
+            return View(dataManager.Reports.GetReports().ToList());
         }
         public IActionResult EditArticle(Guid articleId)
         {
@@ -99,11 +99,11 @@ namespace Blog.Areas.Admin.Controllers
         }
         public IActionResult ReportCategories()
         {
-            return View(dataManager.ReportCategories.GetReportCategories());
+            return View(dataManager.ReportCategories.GetReportCategories().ToList());
         }
         public IActionResult ArticleCategories()
         {
-            return View(dataManager.Categories.GetCategories());
+            return View(dataManager.Categories.GetCategories().ToList());
         }
         public IActionResult EditReportCategory(Guid id)
         {

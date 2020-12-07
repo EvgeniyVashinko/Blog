@@ -148,7 +148,7 @@ namespace Repository
         public AppDbContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
-            optionsBuilder.UseSqlServer("Data Source=(local)\\SQLEXPRESS; Database=MyBlog; Persist Security Info=false; User ID='sa'; Password='admin'; MultipleActiveResultSets=True; Trusted_Connection=False;");
+            optionsBuilder.UseSqlServer("Data Source=tcp:blogdbserver1234.database.windows.net,1433;Initial Catalog=Blog_db;User Id=bsa@blogdbserver1234;Password=Ubuntu@127001");
 
             return new AppDbContext(optionsBuilder.Options);
         }
