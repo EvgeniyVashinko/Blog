@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Blog.Domain.Entities;
+using Entities;
 using Blog.Models;
 using Blog.Service;
 using Microsoft.AspNetCore.Authorization;

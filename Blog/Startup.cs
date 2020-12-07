@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
-using Blog.Domain;
-using Blog.Domain.Entities;
-using Blog.Domain.Repositories.Abstract;
-using Blog.Domain.Repositories.EntityFramework;
+using Services;
+using Entities;
+using Repository;
+using Services.Abstract;
+using Services.EntityFramework;
 using Blog.Hubs;
 using Blog.Service;
 using Microsoft.AspNetCore.Builder;
@@ -20,6 +21,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
+using Microsoft.EntityFrameworkCore.Design;
 
 namespace Blog
 {
@@ -45,7 +47,14 @@ namespace Blog
             services.AddTransient<DataManager>();
             services.AddTransient<Email>();
 
-            services.AddDbContext<AppDbContext>(x => x.UseSqlServer(Config.ConnectionString));
+
+            services.AddDbContext<AppDbContext>(x =>
+            {
+                x.UseSqlServer(Config.ConnectionString, assembly => 
+                {
+                    assembly.MigrationsAssembly("Repository");
+                });
+            });
 
             services.AddIdentity<User, IdentityRole>(opts =>
             {

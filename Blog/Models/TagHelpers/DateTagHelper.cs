@@ -13,7 +13,7 @@ namespace Blog.Models.TagHelpers
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
             output.TagName = "p";
-            var res = $"{date.ToString("HH:mm:ss dd.MM.yyyy")}";
+            var res = date.ToString("HH:mm:ss dd.MM.yyyy");
             output.Content.SetHtmlContent(res);
         }
     }
