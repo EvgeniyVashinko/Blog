@@ -44,7 +44,8 @@ namespace Blog.Hubs
 
             commentRepository.SaveComment(comment);
 
-            await Clients.Group(articleId).SendAsync("Send", user.UserName, comment.Text, comment.PublishDate.ToString("HH:mm:ss dd.MM.yyyy"));
+            //await Clients.Group(articleId).SendAsync("Send", user.UserName, comment.Text, comment.PublishDate.ToString("HH:mm:ss dd.MM.yyyy"));
+            await Clients.Group(articleId).SendAsync("Send", user.UserName, comment.Text, comment.PublishDate.Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds);
         }
     }
 }
