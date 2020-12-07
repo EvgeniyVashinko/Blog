@@ -7,12 +7,16 @@ document.getElementById("send").addEventListener("click", SendComment);
 connection.on("Send", AddComment);
 
 function AddComment(userName, content, postedDate) {
+    var clientTimeZoneOffset = new Date().getTimezoneOffset();
+    var options = { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true };
+    var date = new Date(postedDate - clientTimeZoneOffset).toLocaleString('en-US', options).replace(",", "");
+
     var comments = document.getElementById("comments")
     comments.insertAdjacentHTML("beforeend",
         '<div class="box">' +
         '<a href=""><h4>' + userName + '</h4 ></a > ' +
         '<p>' + content + '</p >' +
-        '<p>' + postedDate + '</p >' +
+        '<p>' + date + '</p >' +
         '</div >'
     )
 }

@@ -1,5 +1,5 @@
 ﻿@model Article
-@inject Blog.Domain.DataManager dataManager;
+@inject Services.DataManager dataManager;
 @inject UserManager<User> userManager
 @inject SignInManager<User> SignInManager
 @inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
@@ -79,7 +79,48 @@
         }
     </div>
     <script src="~/js/signalr/dist/browser/signalr.min.js"></script>
-    <script src="~/js/sendComments.js"></script>
+    @*<script src="~/js/sendComments.js"></script>*@
+
+    <script type="text/javascript">
+        "use strict";
+
+        var connection = new signalR.HubConnectionBuilder().withUrl("/comment").build();
+        document.getElementById("send").disabled = true;
+        connection.start().then(AddToGroup);
+        document.getElementById("send").addEventListener("click", SendComment);
+        connection.on("Send", AddComment);
+
+        function AddComment(userName, content, postedDate) {
+            var clientTimeZoneOffset = new Date().getTimezoneOffset();
+            var options = { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true };
+            var date = new Date(postedDate - clientTimeZoneOffset).toLocaleString('en-US', options).replace(",", "");
+
+            var comments = document.getElementById("comments")
+            comments.insertAdjacentHTML("beforeend",
+                '<div class="box">' +
+                '<a href=""><h4>' + userName + '</h4 ></a > ' +
+                '<p>' + content + '</p >' +
+                '<p>' + date + '</p >' +
+                '</div >'
+            )
+        }
+
+        function AddToGroup() {
+            document.getElementById("send").disabled = false;
+            var postId = document.getElementById("articleId").value;
+            connection.invoke("AddToGroup", postId)
+        }
+
+        function SendComment(event) {
+            var articleId = document.getElementById("articleId").value;
+            var content = document.getElementById("content").value;
+            if (document.getElementById("content").value != "") {
+                document.getElementById("content").value = "";
+                connection.invoke("SendComment", articleId, content)
+                event.preventDefault();
+            }
+        }
+    </script>
 </section>
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>

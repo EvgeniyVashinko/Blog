@@ -1,5 +1,5 @@
-﻿using Blog.Domain;
-using Blog.Domain.Entities;
+﻿using Services;
+using Entities;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;

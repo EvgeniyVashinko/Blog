@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Blog.Domain;
-using Blog.Domain.Entities;
+using Services;
+using Entities;
+using Repository;
 using Blog.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
@@ -116,7 +117,7 @@ namespace Blog.Controllers
         {
             var article = dataManager.Articles.GetArticle(id);
 
-            var comments = dataManager.Comments.GetCommentsByArticle(dataManager.Articles.GetArticle(id));
+            var comments = dataManager.Comments.GetCommentsByArticle(dataManager.Articles.GetArticle(id)).ToList();
             ViewBag.Comments = comments;
             ViewBag.LikeAmount = dataManager.Articles.LikeAmount(article);
             return View(article);

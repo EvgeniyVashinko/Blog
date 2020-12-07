@@ -13,7 +13,9 @@ namespace Blog.Models.TagHelpers
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
             output.TagName = "p";
-            var res = $"{date.ToString("HH:mm:ss dd.MM.yyyy")}";
+            var tagStart = "<small class=\"date-output\">";
+            var tagEnd = "</small>";
+            var res = tagStart + date.ToString("HH:mm:ss dd.MM.yyyy") + tagEnd;
             output.Content.SetHtmlContent(res);
         }
     }
