@@ -44,8 +44,8 @@ namespace Blog
             services.AddTransient<ICategoryRepository, EFCategoryRepository>();
             services.AddTransient<IReportCategoryRepository, EFReportCategoryRepository>();
             services.AddTransient<IReportRepository, EFReportRepository>();
-            services.AddTransient<DataManager>();
-            services.AddTransient<Email>();
+            services.AddScoped<DataManager>();
+            services.AddSingleton<Email>();
 
 
             services.AddDbContext<AppDbContext>(x =>
