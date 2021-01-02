@@ -5,13 +5,11 @@
     ViewData["Title"] = localizer["title"];
 }
 <section>
+    <h2>@localizer["title"]</h2>
+
     <div class="row">
-
-        <div class="col-4 col-12-medium">
-            <h2>@localizer["title"]</h2>
-
+        <div class="col-md-4">
             <form asp-action="Login">
-                <div><input type="hidden" asp-for="ReturnUrl"></div>
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
                     <label class="control-label">@localizer["uname"]</label>
@@ -26,39 +24,14 @@
                 <div class="col-6 col-12-small">
                     <br />
                     @*<input type="checkbox" asp-for="RememberMe" />
-                <label for="RememberMe">
-                    @Html.DisplayNameFor(model => model.RememberMe)
-                </label>*@
+                        <label for="RememberMe">
+                            @Html.DisplayNameFor(model => model.RememberMe)
+                        </label>*@
                 </div>
                 <div class="form-group">
                     <input type="submit" value="@localizer["login"]" class="btn btn-primary" />
                 </div>
             </form>
-        </div>
-
-        <div class="col-6 col-12-medium">
-            <h2>Войти с помощью </h2>
-            @{
-                if (Model.ExternalLogins.Count == 0)
-                {
-                    <div>No external logins configured</div>
-                }
-                else
-                {
-                    <form method="post" asp-action="ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl">
-                        <div>
-                            @foreach (var provider in Model.ExternalLogins)
-                            {
-                                <button type="submit" class="btn btn-primary"
-                                        name="provider" value="@provider.Name"
-                                        title="Log in using your @provider.DisplayName account">
-                                    @provider.DisplayName
-                                </button>
-                            }
-                        </div>
-                    </form>
-                }
-            }
         </div>
     </div>
 

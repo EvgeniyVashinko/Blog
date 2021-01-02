@@ -1,5 +1,5 @@
-﻿using Services;
-using Entities;
+﻿using Blog.Domain;
+using Blog.Domain.Entities;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

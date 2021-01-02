@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Entities;
-using Repository;
+using Blog.Domain;
+using Blog.Domain.Entities;
 using Blog.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
@@ -12,7 +12,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
-using Services;
 
 namespace Blog.Areas.Admin.Controllers
 {
@@ -35,24 +34,24 @@ namespace Blog.Areas.Admin.Controllers
 
         public IActionResult Users()
         {
-            return View(userManager.Users.ToList());
+            return View(userManager.Users);
         }
         public IActionResult Articles(string id)
         {
-            List<Article> articles;
+            IQueryable<Article> articles;
             if (id == null)
             {
-                articles = dataManager.Articles.GetArticles().ToList();
+                articles = dataManager.Articles.GetArticles();
             }
             else
             {
-                articles = dataManager.Articles.GetArticlesByUser(id).ToList();
+                articles = dataManager.Articles.GetArticlesByUser(id);
             }
             return View(articles);
         }
         public IActionResult Reports()
         {
-            return View(dataManager.Reports.GetReports().ToList());
+            return View(dataManager.Reports.GetReports());
         }
         public IActionResult EditArticle(Guid articleId)
         {
@@ -99,11 +98,11 @@ namespace Blog.Areas.Admin.Controllers
         }
         public IActionResult ReportCategories()
         {
-            return View(dataManager.ReportCategories.GetReportCategories().ToList());
+            return View(dataManager.ReportCategories.GetReportCategories());
         }
         public IActionResult ArticleCategories()
         {
-            return View(dataManager.Categories.GetCategories().ToList());
+            return View(dataManager.Categories.GetCategories());
         }
         public IActionResult EditReportCategory(Guid id)
         {
