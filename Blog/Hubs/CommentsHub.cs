@@ -1,8 +1,7 @@
-﻿using Entities;
-
+﻿using Blog.Domain.Entities;
+using Blog.Domain.Repositories.Abstract;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SignalR;
-using Services.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,8 +43,7 @@ namespace Blog.Hubs
 
             commentRepository.SaveComment(comment);
 
-            //await Clients.Group(articleId).SendAsync("Send", user.UserName, comment.Text, comment.PublishDate.ToString("HH:mm:ss dd.MM.yyyy"));
-            await Clients.Group(articleId).SendAsync("Send", user.UserName, comment.Text, comment.PublishDate.Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds);
+            await Clients.Group(articleId).SendAsync("Send", user.UserName, comment.Text, comment.PublishDate.ToString("HH:mm:ss dd.MM.yyyy"));
         }
     }
 }
