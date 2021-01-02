@@ -94,6 +94,13 @@ namespace Blog
                 x.Conventions.Add(new AdminAreaAuthorization("Admin", "AdminArea"));
             }).SetCompatibilityVersion(CompatibilityVersion.Version_3_0).AddSessionStateTempDataProvider();
 
+            services.AddAuthentication()
+            .AddGoogle(opt =>
+            {
+                opt.ClientId = Configuration["Project:GoogleClientId"];
+                opt.ClientSecret = Configuration["Project:GoogleClientSecret"];
+            });
+
             services.AddSignalR(hubOptions =>
             {
                 hubOptions.EnableDetailedErrors = true;
