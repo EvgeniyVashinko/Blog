@@ -6,13 +6,17 @@ connection.start().then(AddToGroup);
 document.getElementById("send").addEventListener("click", SendComment);
 connection.on("Send", AddComment);
 
-function AddComment(userName, content, postedDate) {
+function AddComment(userName, content, publishDate) {
+    var timeOffset = new Date().getTimezoneOffset();
+    var options = { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: false };
+    var date = new Date(publishDate - timeOffset).toLocaleString('ru-RU', options).replace(",", "");
+
     var comments = document.getElementById("comments")
     comments.insertAdjacentHTML("beforeend",
         '<div class="box">' +
         '<a href=""><h4>' + userName + '</h4 ></a > ' +
         '<p>' + content + '</p >' +
-        '<p>' + postedDate + '</p >' +
+        '<p>' + date + '</p >' +
         '</div >'
     )
 }
@@ -31,6 +35,4 @@ function SendComment(event) {
         connection.invoke("SendComment", articleId, content)
         event.preventDefault();
     }
-
-
 }

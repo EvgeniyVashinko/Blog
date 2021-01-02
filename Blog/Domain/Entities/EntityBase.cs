@@ -13,6 +13,6 @@ namespace Blog.Domain.Entities
         [DataType(DataType.DateTime)]
         public DateTime PublishDate { get; set; }
 
-        protected EntityBase() => PublishDate = DateTime.Now;
+        protected EntityBase() => PublishDate = DateTime.UtcNow;
     }
 }
