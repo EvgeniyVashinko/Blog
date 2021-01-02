@@ -4,14 +4,16 @@ using Blog.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Blog.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210102203007__DBMigration")]
+    partial class _DBMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -294,14 +296,14 @@ namespace Blog.Migrations
                         new
                         {
                             Id = "ED70FD60-DE76-4497-9FBB-822F7759DBAE",
-                            ConcurrencyStamp = "f39e3968-e8da-41a3-a3fa-790eb5a8f8b6",
+                            ConcurrencyStamp = "004d996c-5340-4270-bb80-85004996211b",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "5D4135A4-6F21-4833-81D1-128104AA12C0",
-                            ConcurrencyStamp = "f7c0ecf7-a7fb-4ecc-b597-6c7a41bb7ab6",
+                            ConcurrencyStamp = "918fac3d-647c-4def-882b-dd760ffbc168",
                             Name = "superadmin",
                             NormalizedName = "SUPERADMIN"
                         });
@@ -505,13 +507,13 @@ namespace Blog.Migrations
                         {
                             Id = "DD20FD22-4350-4D1C-98C4-E82F21C1F414",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "4133cb66-ebd7-44d7-bd02-ac7b77f5c23f",
+                            ConcurrencyStamp = "f632d1d2-f937-4548-b640-85d78e4f7713",
                             Email = "email@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "EMAIL@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKXbkKf45NhgNy5QbM1A8bj0wbGaAL38gGK7fIgEUPswzum4Y2kUQSHD2kLy3afd5w==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOpULNY0gtiQzLuVW+kRn1HrLn4IuPeR1bzuWiXAUShzNFvbBAEoQjl/Rne9O5f3Jw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
