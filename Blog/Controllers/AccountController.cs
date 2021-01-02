@@ -57,7 +57,6 @@ namespace Blog.Controllers
                     ModelState.AddModelError(nameof(LoginViewModel.UserName), "Неверный логин или пароль");
                 }
             }
-            model.ExternalLogins = (await signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             return View(model);
         }
 

@@ -93,51 +93,33 @@ namespace Repository
 
             builder.Entity<ReportCategory>().HasData(new ReportCategory
             {
-                Id = new Guid("A2D3B7F5-4AE7-4D16-AB6C-378482E2A4BF"),
-                Name = "Спам",
-                BeName = "Спам",
-                EnName = "Spam"
+                Id = Guid.NewGuid(),
+                Name = "Пропаганда наркотиков"
             });
             builder.Entity<ReportCategory>().HasData(new ReportCategory
             {
-                Id = new Guid("6361AE44-67D4-4CA9-BA22-D8AB68EAA79B"),
-                Name = "Пропаганда наркотиков",
-                BeName = "Прапаганда наркотыкаў",
-                EnName = "Promotion of drugs"
-
+                Id = Guid.NewGuid(),
+                Name = "Порнография"
             });
             builder.Entity<ReportCategory>().HasData(new ReportCategory
             {
-                Id = new Guid("F1B06C90-DC89-4C39-A39E-0285EEE86ED6"),
-                Name = "Порнография",
-                BeName = "Парнаграфія",
-                EnName = "Pornography"
+                Id = Guid.NewGuid(),
+                Name = "Продажа оружия"
             });
             builder.Entity<ReportCategory>().HasData(new ReportCategory
             {
-                Id = new Guid("6C1ECC1A-C238-44B1-85D4-5749F167676C"),
-                Name = "Продажа оружия",
-                BeName = "Прадажа зброі",
-                EnName = "Weaponssale"
+                Id = Guid.NewGuid(),
+                Name = "Мошенничество"
             });
             builder.Entity<ReportCategory>().HasData(new ReportCategory
             {
-                Id = new Guid("776B56D4-9059-4379-A388-E1BCE3CF4EF9"),
-                Name = "Мошенничество",
-                BeName = "Жульніцтва",
-                EnName = "Fraud"
-            });
-            builder.Entity<ReportCategory>().HasData(new ReportCategory
-            {
-                Id = new Guid("DB71DF6A-D946-4AEC-8F7E-625AB55B22D7"),
-                Name = "Призыв к суициду",
-                BeName = "Заклік да суіцыду",
-                EnName = "The call to suicide"
+                Id = Guid.NewGuid(),
+                Name = "Призыв к суициду"
             });
 
             builder.Entity<Category>().HasData(new Category
             {
-                Id = new Guid("96F80EC3-2401-4CCB-B6F3-DB92E986327B"),
+                Id = Guid.NewGuid(),
                 Name = "IT",
                 BeName = "IT",
                 EnName = "IT"
@@ -145,7 +127,7 @@ namespace Repository
 
             builder.Entity<Category>().HasData(new Category
             {
-                Id = new Guid("460BC6DE-6728-4798-8232-8FB98BF0D20E"),
+                Id = Guid.NewGuid(),
                 Name = "Спорт",
                 BeName = "Спорт",
                 EnName = "Sport"
@@ -153,7 +135,7 @@ namespace Repository
 
             builder.Entity<Category>().HasData(new Category
             {
-                Id = new Guid("793E3729-40F3-4306-9F64-37EA397A286C"),
+                Id = Guid.NewGuid(),
                 Name = "Музыка",
                 BeName = "Музыка",
                 EnName = "Music"
@@ -166,7 +148,7 @@ namespace Repository
         public AppDbContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
-            optionsBuilder.UseSqlServer("Data Source=(local)\\SQLEXPRESS; Database=MyBlog; Persist Security Info=false; User ID='sa'; Password='admin'; MultipleActiveResultSets=True; Trusted_Connection=False;");
+            optionsBuilder.UseSqlServer("Data Source=tcp:blogdbserver1234.database.windows.net,1433;Initial Catalog=Blog_db;User Id=bsa@blogdbserver1234;Password=Ubuntu@127001");
 
             return new AppDbContext(optionsBuilder.Options);
         }
