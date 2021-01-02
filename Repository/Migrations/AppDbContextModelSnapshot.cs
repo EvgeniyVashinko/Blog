@@ -96,29 +96,6 @@ namespace Blog.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("96f80ec3-2401-4ccb-b6f3-db92e986327b"),
-                            BeName = "IT",
-                            EnName = "IT",
-                            Name = "IT"
-                        },
-                        new
-                        {
-                            Id = new Guid("460bc6de-6728-4798-8232-8fb98bf0d20e"),
-                            BeName = "Спорт",
-                            EnName = "Sport",
-                            Name = "Спорт"
-                        },
-                        new
-                        {
-                            Id = new Guid("793e3729-40f3-4306-9f64-37ea397a286c"),
-                            BeName = "Музыка",
-                            EnName = "Music",
-                            Name = "Музыка"
-                        });
                 });
 
             modelBuilder.Entity("Entities.Comment", b =>
@@ -222,44 +199,27 @@ namespace Blog.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("a2d3b7f5-4ae7-4d16-ab6c-378482e2a4bf"),
-                            BeName = "Спам",
-                            EnName = "Spam",
-                            Name = "Спам"
-                        },
-                        new
-                        {
-                            Id = new Guid("6361ae44-67d4-4ca9-ba22-d8ab68eaa79b"),
-                            BeName = "Прапаганда наркотыкаў",
-                            EnName = "Promotion of drugs",
+                            Id = new Guid("0ea6e27b-bb8e-44ae-851d-739e43bf9b7c"),
                             Name = "Пропаганда наркотиков"
                         },
                         new
                         {
-                            Id = new Guid("f1b06c90-dc89-4c39-a39e-0285eee86ed6"),
-                            BeName = "Парнаграфія",
-                            EnName = "Pornography",
+                            Id = new Guid("34c35c5d-95b0-476a-9ccf-c48a4519ca15"),
                             Name = "Порнография"
                         },
                         new
                         {
-                            Id = new Guid("6c1ecc1a-c238-44b1-85d4-5749f167676c"),
-                            BeName = "Прадажа зброі",
-                            EnName = "Weaponssale",
+                            Id = new Guid("41793357-f72c-44d2-a817-d9260625bdbf"),
                             Name = "Продажа оружия"
                         },
                         new
                         {
-                            Id = new Guid("776b56d4-9059-4379-a388-e1bce3cf4ef9"),
-                            BeName = "Жульніцтва",
-                            EnName = "Fraud",
+                            Id = new Guid("edb1b196-acf0-48e1-a5a6-aa7f1527bdc3"),
                             Name = "Мошенничество"
                         },
                         new
                         {
-                            Id = new Guid("db71df6a-d946-4aec-8f7e-625ab55b22d7"),
-                            BeName = "Заклік да суіцыду",
-                            EnName = "The call to suicide",
+                            Id = new Guid("67fafbca-c1a4-4d31-8b65-dd28b05f3f9b"),
                             Name = "Призыв к суициду"
                         });
                 });
@@ -294,14 +254,14 @@ namespace Blog.Migrations
                         new
                         {
                             Id = "ED70FD60-DE76-4497-9FBB-822F7759DBAE",
-                            ConcurrencyStamp = "46d90725-22bb-4ca7-aa34-b6ddc6c9f87a",
+                            ConcurrencyStamp = "e038792d-df61-44fe-ac2b-7718dd7b3b84",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "5D4135A4-6F21-4833-81D1-128104AA12C0",
-                            ConcurrencyStamp = "5e0e3449-8c19-47a6-a120-681860a636da",
+                            ConcurrencyStamp = "6780ba6e-c701-4de3-893e-07b0482ea666",
                             Name = "superadmin",
                             NormalizedName = "SUPERADMIN"
                         });
@@ -505,13 +465,13 @@ namespace Blog.Migrations
                         {
                             Id = "DD20FD22-4350-4D1C-98C4-E82F21C1F414",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3e8ad8c1-d49a-424c-91e6-4066b5cac866",
+                            ConcurrencyStamp = "9582d632-255d-4651-ade4-c3945433f47f",
                             Email = "email@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "EMAIL@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEFDyG06/fhTiMkLlVLybUZxGA2c417kN3hZ/nT/oBTGovmXKBMGrg8c+2f7bgMFVJQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAN4NbmSFL162ueL6prnhnNAZPiTkiYjotD3FkjcMk/BpCJOH3TO8Dzw623W+7Qypg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,

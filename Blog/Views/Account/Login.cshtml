@@ -37,11 +37,11 @@
         </div>
 
         <div class="col-6 col-12-medium">
-            <h2>@localizer["loginwh"]</h2>
+            <h2>Войти с помощью </h2>
             @{
                 if (Model.ExternalLogins.Count == 0)
                 {
-                        <div>@localizer["extlogins"]</div>
+                    <div>No external logins configured</div>
                 }
                 else
                 {
